@@ -1,6 +1,6 @@
 package hotelSearch;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
+
 import java.util.ArrayList;
 
 import org.joda.time.DateTime;
@@ -35,14 +35,11 @@ public class Request {
 		return location;
 	}
 	
-	public String getFromDate(){
-		return this.fromDate;
+	//Should this getter then be here calculate-getter in StayLenght.java?
+	public int getTotalDays(){
+		
+		return day.getTotalDays();
 	}
-	
-	public String getToDate(){
-		return this.toDate;
-	}
-	
 	
 	public int getTotalRooms(){
 		if (totalBeds < 2) {

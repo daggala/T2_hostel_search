@@ -15,30 +15,18 @@ import org.junit.Test;
 
 public class TestTotalBeds {
 
-	
-	StayLength day;
-	Request req1;
-	
-	@Before
-	public void setup() {
-	
-		day = new StayLength(2014, 6, 1, 2014, 6, 5);
-      	req1 = new Request("Reykjavik", day, 3);
-      	
-	}
-	
-	@After
-	public void tearDown() {
-		
-		day = null;
-		req1 = null;
-	
-	}
-	
+
 	@Test
-	public void test() {	
+	public void test() {
+		
+		StayLength day = new StayLength(2014, 6, 1, 2014, 6, 5);
+		Request req1 = new Request("Reykjavik", day, 3);
+		
+		//make it throw exception? or what?
+		//Request req2 = new Request("Reykjavik", day);
 		
 		assertEquals(3, req1.getTotalBeds());
+		//assertEquals(3, req2.getTotalBeds());
 
 	}
 

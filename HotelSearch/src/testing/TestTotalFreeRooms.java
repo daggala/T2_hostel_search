@@ -15,35 +15,20 @@ import org.junit.Test;
 public class TestTotalFreeRooms {
 
 	
-	StayLength day;
-	Request req1;
-	Hotel hotel1;
-	private ArrayList<String> facs;
-	
-	@Before
-	public void setup() {
-	
-		facs.add("Kitchen facilities");
-		facs.add("TV");
-		day = new StayLength(2014, 6, 1, 2014, 6, 5);
-      	req1 = new Request("Reykjavik", day, 3);
-      	hotel1 = new Hotel(03, "Hotel101", "Reykjavik", 5900, facs);
-	}
-	
-	@After
-	public void tearDown() {
-		
-		facs = null;
-		day = null;
-		req1 = null;
-		hotel1 = null;
-	
-	}
 	
 	@Test
-	public void test() {	
+	public void test() {
 		
-		assertEquals(hotel1.getTotalFreeRooms(req1.getFromDate()), 3);
+		StayLength day = new StayLength(2014, 6, 1, 2014, 6, 5);
+		Request req1 = new Request("Reykjavik", day, 3);
+		ArrayList<String> facs = new ArrayList<String>();
+		
+		facs.add("Kitchen facilities");
+		facs.add("TV");
+		
+		Hotel hotel1 = new Hotel(03, "Hotel101", "Reykjavik", 5900, facs);
+		
+		assertEquals(hotel1.getTotalFreeRooms(day.getArrYear(), day.getArrMonth(), day.getArrDate()), 3);
 
 	}
 }

@@ -25,7 +25,7 @@ public class Hotel {
 	}
 	
 	//New method - add to UML
-	public int getTotalFreeRooms(String date){
+	public int getTotalFreeRooms(int year, int month, int day){
 		
 		//DB QUERY...
 		return totalFreeRooms;

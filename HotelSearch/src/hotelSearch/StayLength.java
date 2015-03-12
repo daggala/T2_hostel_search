@@ -47,6 +47,7 @@ public class StayLength {
 			return departureDate;
 		}
 		
+		
 		public int getTotalDays(){
 			
 			start = new DateTime(this.arrivalYear, this.arrivalMonth, this.arrivalDate, 0, 0, 0, 0);
