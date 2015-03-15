@@ -11,7 +11,7 @@ public class MockConnectionDB implements QueryDB {
 	public MockConnectionDB(){
 	}
 	
-	public ArrayList<Hotel> getMatchingHotelFromDB(String query) throws ConnectException{
+	public ArrayList<Hotel> getMatchingHotelsFromDB(String query) throws ConnectException{
 		
 		ArrayList<Hotel> hotel_list = new ArrayList<Hotel>();
 		ArrayList<String> facs = new ArrayList<String>();
@@ -27,3 +27,7 @@ public class MockConnectionDB implements QueryDB {
 		return hotel_list;
 	}
 }
+
+
+
+

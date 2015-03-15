@@ -3,16 +3,16 @@ package hotelSearch;
 public class Request {
 	
 	private String location;
-	private int totalBeds;
+	private double totalBeds;
 	
-	public Request(String location, StayLength day, int totalBeds){
+	public Request(String location, StayLength day, double totalBeds){
 		this.location = location;
 		this.totalBeds = totalBeds;
 
 	}
 	
 	public int getTotalBeds(){
-		return totalBeds;
+		return (int) totalBeds;
 	}
 	
 	public String getLocation(){
@@ -20,14 +20,17 @@ public class Request {
 	}
 	
 	public int getTotalRooms(){
-		if (totalBeds < 2) {
+		if (totalBeds == 1) {
 			return 1;
 		}
-		if (totalBeds%2 == 0 && totalBeds > 2) { 
-			return totalBeds/2; 
+		else if (totalBeds <= 0){
+			return 0;
+		}
+		else if (totalBeds%2 == 0) { 
+			return (int) (totalBeds/2); 
 		} 
 		else if (totalBeds%2 != 0) { 
-			return (int) Math.ceil(totalBeds/2); 
+			return (int) Math.ceil(totalBeds/2);
 		}
 		else{
 			return 0;

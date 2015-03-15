@@ -10,7 +10,7 @@ public class ConnectionDB implements QueryDB {
 		
 	}
 
-	public ArrayList<Hotel> getMatchingHotelFromDB(String query) throws ConnectException{
+	public ArrayList<Hotel> getMatchingHotelsFromDB(String query) throws ConnectException{
 
 		return hotels;
 	}

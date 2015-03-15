@@ -12,25 +12,24 @@ public class HotelSearch {
 		query_string ="";
 	
 	}
-	
+	/*
 	public String makeQueryString(Request request){
 		
 		return query_string;
 	}
+*/
 	
 	public ArrayList<Hotel> findHotels(Request request){
 		
-		query_string = makeQueryString(request);
+		//query_string = makeQueryString(request);
 		
 		try{
-			list = queryDB.getMatchingHotelFromDB(query_string);
+			list = queryDB.getMatchingHotelsFromDB(query_string);
 		}
 		
 		catch(ConnectException e){
-			list = new ArrayList<Hotel>();
 		}
-		
-		
+	
 		return list;
 	}
 }
