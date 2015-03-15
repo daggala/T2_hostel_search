@@ -48,7 +48,7 @@ public class StayLength {
 		}
 		
 		
-		public int getTotalDays(){
+		public int getDaysBetweenDates(){
 			
 			start = new DateTime(this.arrivalYear, this.arrivalMonth, this.arrivalDate, 0, 0, 0, 0);
 			end = new DateTime(this.departureYear, this.departureMonth, this.departureDate, 0, 0, 0, 0);

@@ -1,15 +1,8 @@
 package testing;
 
 import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-
-import hotelSearch.Hotel;
 import hotelSearch.Request;
 import hotelSearch.StayLength;
-
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 public class TestGetTotalRooms {

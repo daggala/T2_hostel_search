@@ -4,31 +4,30 @@ import java.util.ArrayList;
 public class HotelSearch {
 	
 	private QueryDB queryDB;
-	private Request request;
-	private String query;
+	private String query_string;
 	private ArrayList<Hotel> list;
 			
 	public HotelSearch(QueryDB queryDB){
 		this.queryDB = queryDB;
+		query_string ="";
 	
 	}
 	
-	public String makeQueryString(){
-		request.getLocation();
-		///etc...
-		query="SQL_QUERY";
-		return query;
+	public String makeQueryString(Request request){
+		
+		return query_string;
 	}
 	
 	public ArrayList<Hotel> findHotels(Request request){
 		
-		query = makeQueryString();
+		query_string = makeQueryString(request);
 		
 		try{
-			list = this.queryDB.getMatchingHotelFromDB(query);
+			list = queryDB.getMatchingHotelFromDB(query_string);
 		}
 		
 		catch(ConnectException e){
+			list = new ArrayList<Hotel>();
 		}
 		
 		

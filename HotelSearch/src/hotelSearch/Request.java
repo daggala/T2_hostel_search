@@ -1,30 +1,14 @@
 package hotelSearch;
 
-
-import java.util.ArrayList;
-
-import org.joda.time.DateTime;
-import org.joda.time.Days;
-
-
 public class Request {
 	
 	private String location;
-	private String fromDate;
-	private String toDate;
 	private int totalBeds;
-	private int priceGroup;
-	private ArrayList facilities;
-	private StayLength day;
-	private DateTime start;
-	private DateTime end;
 	
 	public Request(String location, StayLength day, int totalBeds){
 		this.location = location;
-		this.toDate = toDate;
-		this.fromDate = fromDate;
 		this.totalBeds = totalBeds;
-		this.day = day;
+
 	}
 	
 	public int getTotalBeds(){
@@ -33,12 +17,6 @@ public class Request {
 	
 	public String getLocation(){
 		return location;
-	}
-	
-	//Should this getter then be here calculate-getter in StayLenght.java?
-	public int getTotalDays(){
-		
-		return day.getTotalDays();
 	}
 	
 	public int getTotalRooms(){
@@ -55,22 +33,5 @@ public class Request {
 			return 0;
 		} 
 	}
-	
-	//Hvort meikar meira sense að reikna dagana út hér eða í Days?
-	 
-	/* 
-	public int calcDays(){
-		
-		start = new DateTime(day.getArrYear(), day.getArrMonth(), day.getArrDate(), 0, 0);
-		end = new DateTime(day.getDepYear(), day.getDepMonth(), day.getDepDate(), 0, 0);
-				
-		Days d = Days.daysBetween(start, end);
-		int days = d.getDays();
-		
-		return days;
-	
-	}
-	*/
-	
-	
+
 }
