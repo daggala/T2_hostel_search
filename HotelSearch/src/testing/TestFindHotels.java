@@ -13,7 +13,11 @@ import org.junit.Test;
 
 public class TestFindHotels {
 	
-	ArrayList<Hotel> hotel_list;
+
+	/*KALLAFKAFLKA
+
+
+	OMGOMGOMGOMGGMOGMGO*/
 	ArrayList<Hotel> list;
 	Request request;
 
