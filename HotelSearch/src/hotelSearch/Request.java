@@ -3,11 +3,13 @@ package hotelSearch;
 public class Request {
 	
 	private String location;
+	private StayLength day;
 	private double totalBeds;
 	
 	public Request(String location, StayLength day, double totalBeds){
 		this.location = location;
 		this.totalBeds = totalBeds;
+		this.day = day;
 
 	}
 	
@@ -35,6 +37,10 @@ public class Request {
 		else{
 			return 0;
 		} 
+	}
+	
+	public StayLength getDate(){
+		return day;
 	}
 
 }

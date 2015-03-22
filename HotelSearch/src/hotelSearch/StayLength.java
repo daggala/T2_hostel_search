@@ -34,7 +34,7 @@ public class StayLength {
 		public int getArrMonth(){
 			return arrivalMonth;
 		}
-		public int getArrDate(){
+		public int getArrDay(){
 			return arrivalDate;
 		}
 		public int getDepYear(){
@@ -43,7 +43,7 @@ public class StayLength {
 		public int getDepMonth(){
 			return departureMonth;
 		}
-		public int getDepDate(){
+		public int getDepDay(){
 			return departureDate;
 		}
 		

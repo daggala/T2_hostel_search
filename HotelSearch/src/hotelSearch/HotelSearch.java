@@ -15,11 +15,24 @@ public class HotelSearch {
 	
 	public String makeQueryString(Request request){
 		
-		String query_string = "SELECT * FROM Hotels WHERE location='";
-		String location = request.getLocation();
-		query_string = query_string + location +"';\"";
-		return query_string;
+		//SELECT * FROM Hotels, Dates WHERE hotelId=id AND location="Reykjavik" AND "010615" >= 2;
 		
+		String query_string = "SELECT * FROM Hotels, Dates WHERE hotelID=id AND location='";
+		
+		String location = request.getLocation();
+		StayLength day = request.getDate();
+		
+		String arrYear = Integer.toString(day.getArrYear());
+		String arrMonth = Integer.toString(day.getArrMonth()); //skilar ekki með 0 fyrir framan
+		String arrDay = Integer.toString(day.getArrDay()); //skilar ekki með 0 fyrir framan
+		int totalRooms = request.getTotalRooms();
+		
+		String arrDate = "\"" + arrDay + arrMonth + arrYear + "\" >=";
+		
+		query_string = query_string + location +"' AND " + arrDate + totalRooms + ";";
+		
+		return query_string;
+
 	}
 
 	

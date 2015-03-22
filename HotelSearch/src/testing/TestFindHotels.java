@@ -20,8 +20,6 @@ public class TestFindHotels {
 	@Test
 	public void testFindHotels() {
 		
-	
-		
 		//Making instance of the mock DB, using polymorphism
 		QueryDB queryDB = new ConnectionDB();
 	
@@ -29,15 +27,12 @@ public class TestFindHotels {
 		HotelSearch hotelSearch = new HotelSearch(queryDB);
 		
 		StayLength day = new StayLength(2014, 6, 1, 2014, 6, 5);
-		Request request = new Request("Reykjavik", day, 3);
+		Request request = new Request("Reykjavik", day, 800);
 
 		list = hotelSearch.findHotels(request);
 		assertNotNull(list);
 
 		System.out.println(list.get(0).getHotelLocation());
-	
 		
 	}
-
-
 }

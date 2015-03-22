@@ -24,13 +24,13 @@ public class ConnectionDB implements QueryDB {
 		Connection c = null;
 	    Statement stmt = null;
 	    try {
-	      Class.forName("org.sqlite.JDBC");
-	      c = DriverManager.getConnection("jdbc:sqlite:/Users/dagny/Downloads/database/HotelData");
-	      c.setAutoCommit(false);
-	 
-	      stmt = c.createStatement();
-	      ResultSet rs = stmt.executeQuery(query);
-	      while ( rs.next() ) {
+		      Class.forName("org.sqlite.JDBC");
+		      c = DriverManager.getConnection("jdbc:sqlite:/Users/dagny/Downloads/database/HotelData");
+		      c.setAutoCommit(false);
+		 
+		      stmt = c.createStatement();
+		      ResultSet rs = stmt.executeQuery(query);
+		      while ( rs.next() ) {
 		    	  
 	    	  id = rs.getInt("id");
 		      name = rs.getString("name");
