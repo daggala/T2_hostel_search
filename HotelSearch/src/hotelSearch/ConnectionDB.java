@@ -4,6 +4,8 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class ConnectionDB implements QueryDB {
+	
+	//LLALALA
 
 	private ArrayList<Hotel> hotels = new ArrayList<Hotel>();
 	int id;
