@@ -1,0 +1,38 @@
+
+	Is in the staylength class
+	calculating and returns the what days we are trying to find in the db
+	Could set a limit of 20 days as this always assuming we have two months collidind
+	
+
+
+List daysInMonth;
+boolean isSameMonth = arrMonth == depMonth;
+int arrivalDay;
+
+if (isSameMonth) {
+	skiladu lista af dagsetningum
+}
+
+else if(month == feb) {
+	int monthLength = 28;
+
+	for (int i = arrivalDay; i <= monthLength; i++) {
+		constructString = toString(i + arrMonth + arrYear)
+		list.add(constructString);
+	}
+
+	for (int i = 1; i <= depDay; i++) {
+		constructString = toString(i + depMonth + depYEar)
+		list.add(constructString);
+	}
+
+	return daysInMonth;
+
+}
+
+else if (month == ap jun sept nov) {
+	sama
+}
+
+else 
+	sama
