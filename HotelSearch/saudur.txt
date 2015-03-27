@@ -4,8 +4,6 @@
 	Could set a limit of 20 days as this always assuming we have two months collidind
 	
 
-//LALALA
-
 List daysInMonth;
 boolean isSameMonth = arrMonth == depMonth;
 int arrivalDay;

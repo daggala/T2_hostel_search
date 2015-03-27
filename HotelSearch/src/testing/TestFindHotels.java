@@ -1,7 +1,8 @@
 package testing;
 
 import static org.junit.Assert.*;
-import hotelSearch.ConnectionDB;
+import hotelSearch.ConnectException;
+import hotelSearch.HotelSearch;
 import hotelSearch.Hotel;
 import hotelSearch.HotelSearch;
 import hotelSearch.QueryDB;
@@ -18,21 +19,24 @@ public class TestFindHotels {
 	Request request;
 
 	@Test
-	public void testFindHotels() {
+	public void testFindHotels() throws ConnectException {
 		
 		//Making instance of the mock DB, using polymorphism
-		QueryDB queryDB = new ConnectionDB();
+		QueryDB queryDB = new HotelSearch();
 	
-		//Making instance of an object of a class that we're testing
-		HotelSearch hotelSearch = new HotelSearch(queryDB);
+
 		
-		StayLength day = new StayLength(2014, 6, 1, 2014, 6, 5);
+		StayLength day = new StayLength(2015, 6, 1, 2015, 6, 5);
+		
 		Request request = new Request("Reykjavik", day, 800);
 
-		list = hotelSearch.findHotels(request);
+		list = queryDB.getMatchingHotelsFromDB(request);
 		assertNotNull(list);
-
 		System.out.println(list.get(0).getHotelLocation());
 		
+		Hotel hotel = list.get(0);
+		int a = hotel.getFacilities().get(2);
+		
+		System.out.println(a);
 	}
 }

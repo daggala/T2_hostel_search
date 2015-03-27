@@ -5,18 +5,18 @@ import java.util.ArrayList;
 import hotelSearch.ConnectException;
 import hotelSearch.Hotel;
 import hotelSearch.QueryDB;
+import hotelSearch.Request;
 
 public class MockConnectionDB implements QueryDB {
 
 	public MockConnectionDB(){
 	}
 	
-	public ArrayList<Hotel> getMatchingHotelsFromDB(String query) throws ConnectException{
+	public ArrayList<Hotel> getMatchingHotelsFromDB(Request request) throws ConnectException{
 		
 		ArrayList<Hotel> hotel_list = new ArrayList<Hotel>();
-		ArrayList<String> facs = new ArrayList<String>();
-		facs.add("Kitchen facilities");
-		facs.add("TV");
+		ArrayList<Integer> facs = new ArrayList<Integer>();
+		facs.add(0);
 		Hotel hotel1 = new Hotel(01, "Hotel Saga", "101", 5900, facs);
 		Hotel hotel2 = new Hotel(02, "Loft hostel", "101", 4900, facs);
 		Hotel hotel3 = new Hotel(33, "Hotel Natura", "Reykjavik", 3490, facs);
@@ -26,6 +26,7 @@ public class MockConnectionDB implements QueryDB {
 		
 		return hotel_list;
 	}
+
 }
 
 

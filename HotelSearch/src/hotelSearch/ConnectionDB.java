@@ -1,65 +1,47 @@
 package hotelSearch;
 
-import java.sql.*;
-import java.util.ArrayList;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Connection;
 
-public class ConnectionDB implements QueryDB {
+
+public class ConnectionDB{
 	
-	//LLALALA
-
-	private ArrayList<Hotel> hotels = new ArrayList<Hotel>();
-	int id;
-	String name;
-	String location;
-	int pricegroup;
-	int pricePerNight;
-	ArrayList<String> facs = new ArrayList<String>();
+	String driver;
+	String connection;
 	
 	public ConnectionDB(){
-
+		this.driver = driver;
+		this.connection = connection;
 	}
-
-	public ArrayList<Hotel> getMatchingHotelsFromDB(String query) throws ConnectException{
-		
-        facs.add("TV");
-
-		Connection c = null;
-	    Statement stmt = null;
-	    try {
-		      Class.forName("org.sqlite.JDBC");
-		      c = DriverManager.getConnection("jdbc:sqlite:/Users/dagny/Downloads/database/HotelData");
-		      c.setAutoCommit(false);
+	
+	static Connection getDBConnection(String driver, String connection) {
 		 
-		      stmt = c.createStatement();
-		      ResultSet rs = stmt.executeQuery(query);
-		      while ( rs.next() ) {
-		    	  
-	    	  id = rs.getInt("id");
-		      name = rs.getString("name");
-		      location = rs.getString("location");
-		      pricegroup  = rs.getInt("pricegroup");
-		      pricePerNight  = rs.getInt("pricePerNight");
-		
-	 
-	         Hotel hotel = new Hotel(id, name, location, pricePerNight, facs);
-	         
-	         hotels.add(hotel);
-	         
-	      }
-	      
-	      rs.close();
-	      stmt.close();
-	      c.close();
-	    } 
-	    catch ( Exception e ) {
-	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	      System.exit(0);
-	    }
-	    
-
-	    return hotels;
-		
-		
+		Connection dbConnection = null;
+ 
+		try {
+ 
+			Class.forName(driver);
+ 
+		} catch (ClassNotFoundException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
+ 
+		try {
+ 
+			dbConnection = DriverManager.getConnection(connection);
+			return dbConnection;
+ 
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
+ 
+		return dbConnection;
+ 
 	}
 
 }

@@ -1,11 +1,11 @@
 package hotelSearch;
 
-
+import java.util.ArrayList;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
-
-
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 public class StayLength {
 	
@@ -18,6 +18,8 @@ public class StayLength {
 		private DateTime start;
 		private DateTime end;
 		
+		private ArrayList<String> datesOfStay;
+		
 		public StayLength(int arrYear, int arrMonth, int arrDate, int depYear, int depMonth, int depDate){
 		
 			arrivalYear = arrYear;
@@ -26,6 +28,8 @@ public class StayLength {
 			departureYear = depYear;
 			departureMonth = depMonth;
 			departureDate = depDate;
+			start = new DateTime(this.arrivalYear, this.arrivalMonth, this.arrivalDate, 0, 0, 0, 0);
+			end = new DateTime(this.departureYear, this.departureMonth, this.departureDate, 0, 0, 0, 0);
 		}
 		
 		public int getArrYear(){
@@ -47,17 +51,31 @@ public class StayLength {
 			return departureDate;
 		}
 		
-		
 		public int getDaysBetweenDates(){
 			
-			start = new DateTime(this.arrivalYear, this.arrivalMonth, this.arrivalDate, 0, 0, 0, 0);
-			end = new DateTime(this.departureYear, this.departureMonth, this.departureDate, 0, 0, 0, 0);
 			Days d = Days.daysBetween(start, end);
 			int days = d.getDays();
 			
 			return days;
 		}
 		
+		public ArrayList<String> getDatesOfStay(){
+			
+			datesOfStay = new ArrayList();
 		
+			DateTimeFormatter fmt = DateTimeFormat.forPattern("ddMMyy");
+			
+			for(int i=0; i<= getDaysBetweenDates(); i++){
+				
+				DateTime d = start.plusDays(i);
+				
+			    String dayString = fmt.print(d);
+			    
+			    datesOfStay.add(dayString);
+			
+			}
+
+			return datesOfStay;
+		}
 }
 
