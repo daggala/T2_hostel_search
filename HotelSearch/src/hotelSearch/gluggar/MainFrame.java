@@ -157,8 +157,8 @@ public class MainFrame implements ActionListener {
 	
 	//	cardlayout.next(container); 
 		
-		CardLayout cardLayout = (CardLayout) contentPane.getLayout();
-        cardLayout.next(contentPane);  
+		CardLayout cardLayout = (CardLayout) cards.getLayout();
+        cardLayout.next(cards);  
 		
 	/*	CardLayout cl = (CardLayout)(cards.getLayout());
 	        cl.show(cards, (String)evt.getItem()); */
