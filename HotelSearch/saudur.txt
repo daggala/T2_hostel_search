@@ -36,3 +36,59 @@ else if (month == ap jun sept nov) {
 
 else 
 	sama
+	
+==========================================	
+	
+	/*  Sauðakóði 2
+	til að vinna með gögn úr gagnagrunni
+	og búa til lista af hótelum */
+
+ArrayList<Hotel> hotels = new ArrayList<Hotel>();
+
+if(facilities hlutur er til){
+	búa til query_string sem tekur tillit til facilities
+	"SELECT * FROM Hotels, Facilities WHERE id = hotelId AND location="
+	setja inn location"AND "
+	setja inn facilities(líklega böns af if setningum) 
+	blablabla
+}
+if(price range er til?){
+	query_string sem tekur tillit til verðflokka
+}
+
+if(bæði price range og facilities){
+	enn ein query_string
+}
+
+else //engin sérstakur price range eða facilities valinn
+	query_string = "SELECT * FROM Hotels, Dates WHERE location='"; //velja öll hótel með réttri staðsetningu
+	ResultSet rs = niðurstöður úr gagnagrunni
+	arraylist<String> dates = niðurstöður úr sauðakóða 1 
+		//í dates eru allar dagsetningar sem gestur vill bóka. Td ef hann vill vera frá 010615-040615
+		//þá inniheldur dates strengina 010615,020615,030615 og 040615
+	boolean available = true 
+	int totalRooms = request.getTotalRooms()
+	while(rs.next()){
+		id = rs.getInt("id");
+		//for-lúppa sem ítrar í gegnum allar dagsetningar sem gestur vill bóka og athugar
+		//hvort það séu nóg laus herbergi alla dagana
+		for(int i = 0; i < dates.length();i++){
+			string checkThisDate = dates[i];
+			string dateQuery = "SELECT "+ checkThisDate + " FROM Hotels, Dates WHERE hotelId = id AND hotelID = "+id
+			ResultSet dateCheck = queryDB.connectToDB(dateQuery)
+			int freeRoom = getInt(checkThisDate)
+			if(freeRoom<totalRooms){
+				available = false
+			}
+		}
+		if(available){
+			name = rs.getString("name");
+		    location = rs.getString("location");
+		    pricegroup  = rs.getInt("pricegroup");
+		    pricePerNight  = rs.getInt("pricePerNight");
+
+	        Hotel hotel = new Hotel(id, name, location, pricePerNight, facs)
+	        hotels.add(hotel);
+		}
+		
+	}

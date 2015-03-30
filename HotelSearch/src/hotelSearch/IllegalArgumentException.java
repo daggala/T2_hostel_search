@@ -2,6 +2,6 @@ package hotelSearch;
 
 public class IllegalArgumentException extends Throwable {
 	public IllegalArgumentException() {
-        System.out.println("Illegal Argument");
-    }
+		System.out.println("Illegal Argument");
+	}
 }

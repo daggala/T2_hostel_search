@@ -18,16 +18,9 @@ public class MainFrame implements ActionListener {
 	//private static CardLayout cardlayout;
 	private static Container contentPane;
 	JPanel cards; //a panel that uses CardLayout
+	private Container container;
 	
-	/*public MainFrame() {
-		
-		CardLayout cardlayout = new CardLayout();
-		Container contentPane = mainFrame.getContentPane();
-		JFrame mainFrame = new JFrame("Hotel Search Engine");
-	}
-	 */
-	
-	
+
 	// make the first window
 	public JPanel makeSearchPanel() {
 		
@@ -95,8 +88,23 @@ public class MainFrame implements ActionListener {
 		resultPanel.add(resultLabel);
 		
 		return resultPanel;
-	
 	}
+	
+	public JPanel makeBookingPanel() {
+		JPanel bookingPanel = new JPanel();
+		JLabel bookingLabel = new JLabel("Booking process");
+		bookingPanel.add(bookingLabel);
+		return bookingPanel;
+	}
+	
+	public JPanel makeConfirmPanel() {
+		JPanel confirmPanel = new JPanel();
+		JLabel confirmLabel = new JLabel("Enter details!");
+		confirmPanel.add(confirmLabel);
+		return confirmPanel;
+	}
+	
+
 	
 	private void addComponentToPane(Container pane) {
 		// TODO Auto-generated method stub
@@ -129,9 +137,11 @@ public class MainFrame implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          
         //Create and set up the content pane.
-        MainFrame demo = new MainFrame();
-        demo.addComponentToPane(frame.getContentPane());
+        MainFrame contentPane = new MainFrame();
+        contentPane.addComponentToPane(frame.getContentPane());
          
+     
+        
         //Display the window.
         frame.setSize(400, 400);
         frame.setVisible(true);
@@ -143,10 +153,14 @@ public class MainFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		System.out.println("haha");
-		//searchPanel.setVisible(false);
-		CardLayout cardlayout = new CardLayout();
+	//	CardLayout cardlayout = new CardLayout();
+	
+	//	cardlayout.next(container); 
 		
-		//resultPanel.setVisible(true);
-		cardlayout.next(contentPane); 
-	} 
+		CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+        cardLayout.next(contentPane);  
+		
+	/*	CardLayout cl = (CardLayout)(cards.getLayout());
+	        cl.show(cards, (String)evt.getItem()); */
+	}  
 }

@@ -8,11 +8,12 @@ import hotelSearch.QueryDB;
 
 public class MockConnectionDB implements QueryDB {
 
-	public MockConnectionDB(){
+	public MockConnectionDB() {
 	}
-	
-	public ArrayList<Hotel> getMatchingHotelsFromDB(String query) throws ConnectException{
-		
+
+	public ArrayList<Hotel> getMatchingHotelsFromDB(String query)
+			throws ConnectException {
+
 		ArrayList<Hotel> hotel_list = new ArrayList<Hotel>();
 		ArrayList<String> facs = new ArrayList<String>();
 		facs.add("Kitchen facilities");
@@ -23,11 +24,7 @@ public class MockConnectionDB implements QueryDB {
 		hotel_list.add(hotel1);
 		hotel_list.add(hotel2);
 		hotel_list.add(hotel3);
-		
+
 		return hotel_list;
 	}
 }
-
-
-
-
