@@ -7,12 +7,9 @@ import java.sql.Connection;
 
 public class ConnectionDB{
 	
-	String driver;
-	String connection;
 	
 	public ConnectionDB(){
-		this.driver = driver;
-		this.connection = connection;
+		
 	}
 	
 	static Connection getDBConnection(String driver, String connection) {

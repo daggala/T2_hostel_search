@@ -15,6 +15,12 @@ public class MockConnectException implements QueryDB{
 		throw new ConnectException();	
 	}
 
+	@Override
+	public String makeQuery() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 		 
   

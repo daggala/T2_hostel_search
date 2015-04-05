@@ -6,4 +6,8 @@ import java.util.ArrayList;
 	 
 	 ArrayList<Hotel> getMatchingHotelsFromDB(Request request) throws ConnectException;
 
+	 String makeQuery();
+
+
+
 }

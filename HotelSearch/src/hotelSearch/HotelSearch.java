@@ -5,49 +5,81 @@ import java.util.ArrayList;
 
 import org.joda.time.DateTime;
 
-public class HotelSearch implements QueryDB {
+public class HotelSearch implements QueryDB{
 	
 	private ArrayList<Hotel> hotels = new ArrayList<Hotel>();
-
-	ArrayList<Integer> facs = new ArrayList<Integer>();
-	
+	private ArrayList<Integer> IDs = new ArrayList<Integer>();
 	private final String DB_DRIVER;
 	private final String DB_CONNECTION;
-	
+	private String selectSQL;
+	private Request request;
+	private int priceGroup;
+	private Facilities facs;
 	public HotelSearch(){
 		
 		DB_DRIVER = "org.sqlite.JDBC";
 		DB_CONNECTION = "jdbc:sqlite:/Users/dagny/Documents/HotelSearch/T2_hostel_search/HotelSearch/HotelData";
+		this.selectSQL = "";
+		this.request = request;
+	}
+	
+	public String makeQuery(){
 		
+		StayLength staylength = request.getDate();
+		ArrayList<String> dayList = staylength.getDatesOfStay();
+		String selectSQL ="SELECT * FROM Hotels, Dates, Facilities "
+	    		+ "WHERE Dates.hotelID=id AND Facilities.hotelID=id AND location=" + "\"" +
+				request.getLocation() + "\" "; 
+		
+		priceGroup = request.getPriceGroup();
+	    facs = request.getFacilities();
+	    
+	    if(priceGroup != 0){
+	    	selectSQL= selectSQL + "AND pricegroup=" + request.getPriceGroup();
+	    }
+	    
+	    if(facs != null){
+		    if(facs.isAlwaysOpen() == 1){
+		    	selectSQL = selectSQL + " AND AlwaysOpen=1";
+		    }
+		    
+		    if(facs.isBar() == 1){
+		    	selectSQL = selectSQL + " AND Bar=1";
+		    }
+		    if(facs.isWifi() == 1){
+		    	selectSQL = selectSQL + " AND Wifi=1";
+		    }
+		    if(facs.isEnsuite() == 1){
+		    	selectSQL = selectSQL + " AND enSuite=1";
+		    }
+		    if(facs.isTV() == 1){
+		    	selectSQL = selectSQL + " AND TV=1"; 
+		    }
+	    }
+	    
+	    for(int i = 0; i< staylength.getDuration(); i++){
+		    selectSQL = selectSQL + " AND \"" + dayList.get(i) + "\"" + ">=" + request.getTotalRooms();
+	    }
+	    
+	    selectSQL = selectSQL + ";";
+	    
+	    System.out.println(selectSQL);
+	    return selectSQL;
 	}
 	
 	public ArrayList<Hotel> getMatchingHotelsFromDB(Request request) throws ConnectException{
 
+		this.request = request;
+		String selectSQL = makeQuery();
 		Connection c = null;
 	    PreparedStatement statement = null;
 	    
-	    ArrayList<String> dayList = new ArrayList<String>();
-	    StayLength staylength = request.getDate();
-	    dayList = staylength.getDatesOfStay();
-	
-	    staylength.getDaysBetweenDates();
-	    //String selectSQL= "SELECT * FROM Hotels, Dates WHERE \"010615\"=176 AND HotelID = id AND location=?;";
-	    
-	    for(int i=0; i< staylength.getDaysBetweenDates(); i++)
-	    {
-	    	
-		    String selectSQL="SELECT * FROM Hotels, Dates, Facilities WHERE" + " \"" + dayList.get(i) + 
-		    		"\""+  ">=176 AND location=? AND Facilities.hotelID = id AND Dates.hotelID = id;";
-
 		    try {
 		    
-			      //Class.forName(DB_DRIVER);
 			      c = ConnectionDB.getDBConnection(DB_DRIVER, DB_CONNECTION);
-			      
+			     
 			      statement = c.prepareStatement(selectSQL);
-			      
-			      statement.setString(1, request.getLocation());
-			  
+		
 			      ResultSet rs = statement.executeQuery();
 			      
 			      while ( rs.next() ) {
@@ -57,14 +89,15 @@ public class HotelSearch implements QueryDB {
 				      String location = rs.getString("location");
 				      int pricegroup  = rs.getInt("pricegroup");
 				      int pricePerNight  = rs.getInt("pricePerNight");
-				      facs.add(rs.getInt("24HourReception"));
-				      facs.add(rs.getInt("Bar"));
-				      facs.add(rs.getInt("Wifi"));
-				      facs.add(rs.getInt("ensuite"));
-				      facs.add(rs.getInt("TV"));
+				      int alwaysopen = rs.getInt("AlwaysOpen");
+				      int bar = rs.getInt("Bar");
+				      int wifi = rs.getInt("Wifi");
+				      int ensuite = rs.getInt("ensuite"); 
+				      int tv = rs.getInt("TV");
 				      
-				      Hotel hotel = new Hotel(id, name, location, pricePerNight, facs);
-			         
+				      Facilities facs = new Facilities(alwaysopen, bar, wifi, ensuite, tv);
+				      Hotel hotel = new Hotel(id, name, location, pricegroup, pricePerNight, facs);
+				      
 				      hotels.add(hotel);
 			      }
 			      
@@ -77,14 +110,10 @@ public class HotelSearch implements QueryDB {
 		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 		      System.exit(0);
 		    }
-	    
-	    }
-	   
+		    
 	    return hotels;	
 	}
 
-	private void add(boolean boolean1) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
 }

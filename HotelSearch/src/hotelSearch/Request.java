@@ -1,16 +1,21 @@
 package hotelSearch;
 
+import java.util.ArrayList;
+
 public class Request {
 	
 	private String location;
-	private StayLength day;
+	private StayLength stayLength;
 	private double totalBeds;
+	private Facilities facs;
+	private int priceGroup;
 	
-	public Request(String location, StayLength day, double totalBeds){
+	public Request(String location, StayLength day, Double totalBeds){
 		this.location = location;
 		this.totalBeds = totalBeds;
-		this.day = day;
-
+		this.stayLength = day;
+		this.facs = null;
+		this.priceGroup = 0;
 	}
 	
 	public int getTotalBeds(){
@@ -21,8 +26,17 @@ public class Request {
 		return location;
 	}
 	
+	public Facilities getFacilities(){
+		return facs;
+	}
+	
+	public int getPriceGroup(){
+		return priceGroup;
+	}
+	
 	public int getTotalRooms(){
 		if (totalBeds == 1) {
+			
 			return 1;
 		}
 		else if (totalBeds <= 0){
@@ -40,7 +54,16 @@ public class Request {
 	}
 	
 	public StayLength getDate(){
-		return day;
+		return stayLength;
 	}
+
+	public void addPriceGroup(int pricegroup){
+		this.priceGroup = pricegroup; 
+	}
+	
+	public void addFacilities(Facilities facs){
+		this.facs = facs;
+	}
+	
 
 }
