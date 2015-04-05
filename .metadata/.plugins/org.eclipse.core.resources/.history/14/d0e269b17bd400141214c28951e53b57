@@ -1,0 +1,25 @@
+package hotelSearch;
+
+public class Facilities {
+	
+	int alwaysOpen;
+	int Bar;
+	int Wifi; 
+	int enSuite;
+	int TV;
+	
+	public Facilities(int alwaysOpen, int Bar, int Wifi, int enSuite, int TV){
+		facs = new HashMap()
+			
+	}
+	
+	`hotelId`	INTEGER,
+	`24HourReception`	INTEGER,
+	`Bar`	INTEGER,
+	`Wifi`	INTEGER,
+	`enSuite`	INTEGER,
+	`TV`	INTEGER,
+	
+	
+
+}

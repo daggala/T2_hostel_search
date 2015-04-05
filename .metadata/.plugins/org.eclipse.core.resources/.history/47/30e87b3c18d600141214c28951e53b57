@@ -1,0 +1,11 @@
+package hotelSearch;
+
+public class Booking {
+	
+	public Booking(Hotel hotel, Request Guest guest){
+		
+	}
+	
+	
+
+}

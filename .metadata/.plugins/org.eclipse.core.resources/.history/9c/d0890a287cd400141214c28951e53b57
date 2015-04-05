@@ -1,0 +1,29 @@
+package hotelSearch;
+
+public class Facilities {
+	
+	private int alwaysOpen;
+	private int bar;
+	private int wifi; 
+	private int ensuite;
+	private int tv;
+	
+	public Facilities(int alwaysOpen, int bar, int Wifi, int enSuite, int tv){
+		this.alwaysOpen = alwaysOpen;
+		this.bar = bar;
+		this.wifi = wifi;
+		this.ensuite = ensuite;
+		this.tv = tv;
+			
+	}
+	
+	`hotelId`	INTEGER,
+	`24HourReception`	INTEGER,
+	`Bar`	INTEGER,
+	`Wifi`	INTEGER,
+	`enSuite`	INTEGER,
+	`TV`	INTEGER,
+	
+	
+
+}
