@@ -19,13 +19,8 @@ public class MockConnectException implements QueryDB{
 	public String makeQuery() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-
-		 
-  
+	}  
 }
-
 
 
  

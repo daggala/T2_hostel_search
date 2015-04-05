@@ -43,7 +43,7 @@ public class BookingManager {
 			      statement.setString(1, Integer.toString(request.getTotalRooms()));
 			      
 			 
-			      statement.setInt(2, 10);
+			      statement.setInt(2, hotel.getHotelID());
 			  	
 	
 			      statement.executeUpdate();
