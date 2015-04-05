@@ -1,0 +1,47 @@
+package hotelSearch;
+
+import java.sql.DriverManager;
+
+import com.sun.corba.se.pept.transport.Connection;
+
+public class ConnectionDB {
+	
+	String driver;
+	String connection;
+	Connection dbConnection;
+	
+	public ConnectionDB(){
+		this.driver = driver;
+		this.connection = connection;
+	}
+	
+	private static Connection getDBConnection(String driver, String connection) {
+		 
+		
+ 
+		try {
+ 
+			Class.forName(driver);
+ 
+		} catch (ClassNotFoundException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
+ 
+		try {
+ 
+			dbConnection = DriverManager.getConnection(connection);
+			return dbConnection;
+ 
+		} catch (SQLException e) {
+ 
+			System.out.println(e.getMessage());
+ 
+		}
+ 
+		return dbConnection;
+ 
+	}
+
+}

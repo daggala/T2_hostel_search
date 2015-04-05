@@ -1,0 +1,22 @@
+package testing;
+
+import static org.junit.Assert.*;
+import hotelSearch.Facilities;
+import hotelSearch.Request;
+
+import org.junit.Test;
+
+public class TestGetFacs {
+
+	@Test
+	public void test() {
+		Facilities facs = new Facilities(1,0,0,0,0);
+		Double beds = 2;
+		Request request = new Request("Reykjavik", day, beds);
+		request.addFacilities(facs);
+		request.addPriceGroup(3);
+		
+		System.out.println(request.getFacilities());
+	}
+
+}

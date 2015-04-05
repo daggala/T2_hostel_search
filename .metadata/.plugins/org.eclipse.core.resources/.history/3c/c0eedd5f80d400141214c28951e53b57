@@ -1,0 +1,76 @@
+package hotelSearch;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+public class BookingManager {
+	
+	public BookingManager(){
+		
+	}
+	
+	public ArrayList<Hotel> updateDB(Hotel hotel, Request request) throws ConnectException{
+
+		Connection c = null;
+	    PreparedStatement statement = null;
+	    
+	    ArrayList<String> dayList = new ArrayList<String>();
+	    StayLength staylength = request.getDate();
+	    dayList = staylength.getDatesOfStay();
+	
+	    staylength.getDaysBetweenDates();
+	    //String selectSQL= "SELECT * FROM Hotels, Dates WHERE \"010615\"=176 AND HotelID = id AND location=?;";
+	    
+	    for(int i=0; i< staylength.getDaysBetweenDates(); i++)
+	    {
+	    	hotel.getHotelID();
+	    	
+		    String updateSQL="UPDATE Dates SET "010615"=175 WHERE hotelID = 10; FROM Hotels, Dates, Facilities WHERE" + " \"" + dayList.get(i) + 
+		    		"\""+  ">=176 AND location=? AND Facilities.hotelID = id AND Dates.hotelID = id;";
+
+		    try {
+			      //Class.forName(DB_DRIVER);
+			      c = ConnectionDB.getDBConnection(DB_DRIVER, DB_CONNECTION);
+			      
+			      statement = c.prepareStatement(selectSQL);
+			      
+			      statement.setString(1, request.getLocation());
+			  
+			      ResultSet rs = statement.executeQuery();
+			      
+			      while ( rs.next() ) {
+			    	  
+			    	  int id = rs.getInt("id");
+				      String name = rs.getString("name");
+				      String location = rs.getString("location");
+				      int pricegroup  = rs.getInt("pricegroup");
+				      int pricePerNight  = rs.getInt("pricePerNight");
+				      int alwaysopen = rs.getInt("24HourReception");
+				      int bar = rs.getInt("Bar");
+				      int wifi = rs.getInt("Wifi");
+				      int ensuite = rs.getInt("ensuite"); 
+				      int tv = rs.getInt("TV");
+				      
+				      Facilities facs = new Facilities(alwaysopen, bar, wifi, ensuite, tv);
+				      Hotel hotel = new Hotel(id, name, location, pricegroup, pricePerNight, facs);
+			         
+				      hotels.add(hotel);
+			      }
+			      
+		      rs.close();
+		      statement.close();
+		      c.close();
+		    }
+		    
+		    catch ( Exception e ) {
+		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		      System.exit(0);
+		    }
+	    
+	    }
+	
+	}
+	
+}
