@@ -1,9 +1,0 @@
-package hotelSearch;
-
-import java.util.ArrayList;
-
- public interface QueryDB{
-	 
-	 Connection getConnection(String query) throws ConnectException;
-
-}
