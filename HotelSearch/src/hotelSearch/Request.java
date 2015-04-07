@@ -8,14 +8,14 @@ public class Request {
 	private StayLength stayLength;
 	private double totalBeds;
 	private Facilities facs;
-	private int priceGroup;
+	private PriceGroup priceGroup;
 	
 	public Request(String location, StayLength day, Double totalBeds){
 		this.location = location;
 		this.totalBeds = totalBeds;
 		this.stayLength = day;
 		this.facs = null;
-		this.priceGroup = 0;
+		this.priceGroup = null;
 	}
 	
 	public int getTotalBeds(){
@@ -30,7 +30,7 @@ public class Request {
 		return facs;
 	}
 	
-	public int getPriceGroup(){
+	public PriceGroup getPriceGroup(){
 		return priceGroup;
 	}
 	
@@ -57,7 +57,7 @@ public class Request {
 		return stayLength;
 	}
 
-	public void addPriceGroup(int pricegroup){
+	public void addPriceGroup(PriceGroup pricegroup){
 		this.priceGroup = pricegroup; 
 	}
 	

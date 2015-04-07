@@ -25,7 +25,6 @@ public class BookingManager {
 	    StayLength staylength = request.getDate();
 	    dayList = staylength.getDatesOfStay();
 	
-	    
 	    for(int i=0; i< staylength.getDuration(); i++)
 	    { 
 	    	
@@ -38,13 +37,10 @@ public class BookingManager {
 			      c = ConnectionDB.getDBConnection(DB_DRIVER, DB_CONNECTION);
 	
 			      statement = c.prepareStatement(updateSQL);
-			     
 			      
 			      statement.setString(1, Integer.toString(request.getTotalRooms()));
-			      
 			 
 			      statement.setInt(2, hotel.getHotelID());
-			  	
 	
 			      statement.executeUpdate();
 		

@@ -31,12 +31,32 @@ public class HotelSearch implements QueryDB{
 	    		+ "WHERE Dates.hotelID=id AND Facilities.hotelID=id AND location=" + "\"" +
 				request.getLocation() + "\" "; 
 		
-		priceGroup = request.getPriceGroup();
+		PriceGroup pricegroup = request.getPriceGroup();
 	    facs = request.getFacilities();
 	    
-	    if(priceGroup != 0){
-	    	selectSQL= selectSQL + "AND pricegroup=" + request.getPriceGroup();
+	    boolean one = pricegroup.isInPricegroupOne();
+	    boolean two = pricegroup.isInPricegroupTwo();
+	   	boolean three = pricegroup.isInPricegroupThree();
+	   	
+	   	if(one == true && two == false && three == false){
+	   		selectSQL= selectSQL + " AND pricegroup= 1";
+	   	}
+	   	if(one == false && two == true && three == false){
+	    	selectSQL= selectSQL + " AND pricegroup= 2";
 	    }
+	   	if(one == false && two == false && three == true){
+	   		selectSQL= selectSQL + " AND pricegroup= 3";
+	   	}
+	   	if(one == true && two == true && three == false){
+    		selectSQL= selectSQL + " AND (pricegroup = 1 OR pricegroup= 2)";
+    	}
+	    if(one == false && two == true && three == true){
+	   		selectSQL= selectSQL + " AND (pricegroup = 2 OR pricegroup= 3)";
+	   	}
+	   	if(one == true && two == false && three == true){
+	   		selectSQL= selectSQL + " AND (pricegroup = 1 OR pricegroup= 3)";
+    	}
+	    	
 	    
 	    if(facs != null){
 		    if(facs.isAlwaysOpen() == 1){
@@ -98,6 +118,7 @@ public class HotelSearch implements QueryDB{
 				      Facilities facs = new Facilities(alwaysopen, bar, wifi, ensuite, tv);
 				      Hotel hotel = new Hotel(id, name, location, pricegroup, pricePerNight, facs);
 				      
+				 
 				      hotels.add(hotel);
 			      }
 			      

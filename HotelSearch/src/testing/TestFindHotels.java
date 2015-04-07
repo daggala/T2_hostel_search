@@ -10,7 +10,7 @@ import hotelSearch.HotelSearch;
 import hotelSearch.QueryDB;
 import hotelSearch.Request;
 import hotelSearch.StayLength;
-
+import hotelSearch.PriceGroup;
 import java.util.ArrayList;
 
 import org.junit.Test;
@@ -26,12 +26,13 @@ public class TestFindHotels {
 		//Making instance of the mock DB, using polymorphism
 		QueryDB queryDB = new HotelSearch();
 	
-		StayLength day = new StayLength(2015, 6, 1, 2015, 6, 2);
+		StayLength day = new StayLength(2015, 6, 2, 2015, 6, 3);
 		Facilities facs = new Facilities(1,0,0,0,0);
+		PriceGroup priceGroup = new PriceGroup(false, false, true);
 		
 		Request request = new Request("Reykjavik", day, 3.0);
 		request.addFacilities(facs);
-		request.addPriceGroup(3);
+		request.addPriceGroup(priceGroup);
 		
 		list = queryDB.getMatchingHotelsFromDB(request);
 		

@@ -43,10 +43,12 @@ public class Facilities {
 	}
 	
 	public HashMap getAllFacs(){
-		
+		allFacs.put("Open 24 hours", alwaysOpen);
+		allFacs.put("Bar", bar);
+		allFacs.put("Wifi", wifi);
+		allFacs.put("En suite", ensuite);
+		allFacs.put("TV", tv);
 		//setja inn tv, etc...
 		return allFacs;
-		
-		
 	}
 }
