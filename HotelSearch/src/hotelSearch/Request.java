@@ -10,12 +10,18 @@ public class Request {
 	private Facilities facs;
 	private PriceGroup priceGroup;
 	
-	public Request(String location, StayLength day, Double totalBeds){
+	public Request(String location, StayLength day, Double totalBeds) throws InvalidTotalBedsException{
 		this.location = location;
-		this.totalBeds = totalBeds;
+	
+		if (totalBeds <= 10)
+			this.totalBeds = totalBeds;
+		else
+			throw new InvalidTotalBedsException();
+		
 		this.stayLength = day;
 		this.facs = null;
 		this.priceGroup = null;
+	
 	}
 	
 	public int getTotalBeds(){
