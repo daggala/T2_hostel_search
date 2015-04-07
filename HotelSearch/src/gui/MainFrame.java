@@ -8,6 +8,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
+/*Gera clear method? */
+
 public class MainFrame implements ActionListener {
 	
 	private static JFrame mainFrame;

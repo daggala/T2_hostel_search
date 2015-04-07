@@ -39,6 +39,7 @@ public class HotelListPanel implements ActionListener{
 			
 		//	pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
 			hotelButton[i] = new JButton("Choose");
+			hotelButton[i].addActionListener(this);
 			
 			Hotel hotel = hotels.get(i);
 			//String hotel = hotels.get(i).toString();
@@ -68,19 +69,10 @@ public class HotelListPanel implements ActionListener{
 	}
 
 	
-/*	@Override
-	public String toString() {
-		
-		
-	    return "Player: " + player + "; Category: " + category 
-	        + "; Question: " + question + "; Answer: " + answer
-	        + "; Score: " + score;
-	}
-	 */
-	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
+		System.out.println("ÞAÐ VAR ÝTT MÉR");
 		
 	}
 
