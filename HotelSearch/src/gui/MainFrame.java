@@ -2,7 +2,7 @@ package gui;
 
 import hotelSearch.ConnectException;
 import hotelSearch.Facilities;
-import hotelSearch.Pricegroup;
+import hotelSearch.PriceGroup;
 import hotelSearch.StayLength;
 import hotelSearch.Request;
 
@@ -157,12 +157,12 @@ public class MainFrame implements ActionListener {
 		
 	}
 	
-	public static Request constructRequest(Facilities fac, StayLength day, double beds, String loc, Pricegroup price){
+	public static Request constructRequest(Facilities fac, StayLength day, double beds, String loc, PriceGroup price){
 		Request req = new Request(loc, day, beds);
 		req.addFacilities(fac);
 		req.addPriceGroup(price);
 		return req;
-	}
+	} 
 
 	
 	@Override
@@ -175,7 +175,7 @@ public class MainFrame implements ActionListener {
 		int toilet = facPanel.getEnSuite()? 1: 0;
 
 		Facilities facilities = new Facilities(allHours,bar,wifi,toilet,TV);
-		Pricegroup pricegroup = new Pricegroup(pricePanel.getPrice1(), pricePanel.getPrice2(), pricePanel.getPrice3());
+		PriceGroup pricegroup = new PriceGroup(pricePanel.getPrice1(), pricePanel.getPrice2(), pricePanel.getPrice3());
 		StayLength day = new StayLength(2015, datePanel.getArrMonth(), datePanel.getArrDay(), 2015, datePanel.getDepMonth(), datePanel.getDepDay());
 		request = constructRequest(facilities, day, (double)nrBedPanel.getNrBeds(), locPanel.getLocation(), pricegroup);		
 		
