@@ -7,10 +7,12 @@ import hotelSearch.Facilities;
 import hotelSearch.HotelSearch;
 import hotelSearch.Hotel;
 import hotelSearch.HotelSearch;
+import hotelSearch.InvalidTotalBedsException;
 import hotelSearch.QueryDB;
 import hotelSearch.Request;
 import hotelSearch.StayLength;
 import hotelSearch.PriceGroup;
+
 import java.util.ArrayList;
 
 import org.junit.Test;
@@ -30,7 +32,14 @@ public class TestFindHotels {
 		Facilities facs = new Facilities(1,0,0,0,0);
 		PriceGroup priceGroup = new PriceGroup(false, false, true);
 		
-		Request request = new Request("Reykjavik", day, 3.0);
+		
+		try{
+			request = new Request("Reykjavik", day, 11);
+		}
+		catch(InvalidTotalBedsException e){
+			System.out.println("Invalid number of beds requested");
+		}
+		
 		request.addFacilities(facs);
 		request.addPriceGroup(priceGroup);
 		
@@ -48,10 +57,6 @@ public class TestFindHotels {
 		
 		Facilities facs1 = hotel.getFacilities();
 		System.out.println(facs1.isTV());
-		
-		BookingManager bm = new BookingManager();
-		bm.reduceAvailability(hotel, request);
-		
 		
 	}
 }

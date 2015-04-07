@@ -23,7 +23,6 @@ import javax.swing.*;
  *  */
 
 public class DatePanel implements ActionListener {
-
 	
 	private int arrMonth, arrDay, depMonth, depDay;
 	private JComboBox arrDayCombo;
