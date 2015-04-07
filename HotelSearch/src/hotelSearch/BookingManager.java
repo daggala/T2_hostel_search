@@ -12,7 +12,7 @@ public class BookingManager {
 	
 	public BookingManager(){
 		DB_DRIVER = "org.sqlite.JDBC";
-		DB_CONNECTION = "jdbc:sqlite:/Users/dagny/Documents/HotelSearch/T2_hostel_search/HotelSearch/HotelData";
+		DB_CONNECTION = "jdbc:sqlite:/Users/Eyrun/git/HotelData";
 	}			
 	
 	public void reduceAvailability(Hotel hotel, Request request) throws ConnectException{

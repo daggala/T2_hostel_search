@@ -16,7 +16,7 @@ public class NrBedsPanel implements ActionListener {
 		
 		JPanel nrBedPanel = new JPanel();
 		JLabel nrBedLabel = new JLabel("Pick number of guests : ");
-		String comboBoxItems[] = {"SELECT", "1", "2", "3","4","5","6","7","8","9" };
+		String comboBoxItems[] = {"SELECT", "1", "2", "3","4","5","6","7","8","9","10"};
 		JComboBox nrBedsCombo = new JComboBox(comboBoxItems);
 		
 		nrBedsCombo.addActionListener(this);

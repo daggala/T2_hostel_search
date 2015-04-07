@@ -2,14 +2,18 @@ package gui;
 
 import hotelSearch.ConnectException;
 import hotelSearch.Facilities;
+import hotelSearch.Hotel;
+import hotelSearch.HotelSearch;
 import hotelSearch.PriceGroup;
 import hotelSearch.StayLength;
 import hotelSearch.Request;
+import hotelSearch.*;
 
 import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 
 public class MainFrame implements ActionListener {
 	
@@ -23,12 +27,14 @@ public class MainFrame implements ActionListener {
 	JPanel cards; //a panel that uses CardLayout
 	private Container container;
 	private Request request;
+	private ArrayList<Hotel> hotels = new ArrayList<Hotel>();
 	
 	LocationPanel locPanel = new LocationPanel();
 	DatePanel datePanel = new DatePanel();
 	FacilitiesPanel facPanel = new FacilitiesPanel();
 	PricePanel pricePanel = new PricePanel();
 	NrBedsPanel nrBedPanel = new NrBedsPanel();
+	HotelListPanel hotelListPanel = new HotelListPanel();
 
 	
 	// make the first window
@@ -58,9 +64,6 @@ public class MainFrame implements ActionListener {
 		return searchPanel;
 	}
 	
-	
-	
-	
 	public JPanel makeResultPanel(){
 		JPanel resultPanel = new JPanel();
 		JLabel resultLabel = new JLabel("List of available hotels");
@@ -86,7 +89,7 @@ public class MainFrame implements ActionListener {
                 cardLayout.next(cards);
             }
         });
-		//resultPanel.add(HotelListPanel.makeHotelListPanel(request));
+		resultPanel.add(hotelListPanel.makeHotelListPanel(hotels));
 		resultPanel.add(forwardButton);
 		resultPanel.add(backButton);
 		resultPanel.add(resultLabel);
@@ -110,8 +113,6 @@ public class MainFrame implements ActionListener {
 		return confirmPanel;
 	}
 	
-
-	
 	private void addComponentToPane(Container pane) {
 		// TODO Auto-generated method stub
 		
@@ -122,14 +123,16 @@ public class MainFrame implements ActionListener {
         JPanel card2 = new JPanel();
         card2.add(makeResultPanel());
         
+      //resultPanel.add(hotelListPanel.makeHotelListPanel(hotels));
+        
         JPanel card3 = new JPanel();
         card3.add(makeBookingPanel());
         
       //Create the panel that contains the "cards".
         cards = new JPanel(new CardLayout());
         cards.add(card1, "1");
-        cards.add(card2, "2");
-        cards.add(card3, "3");
+     //   cards.add(card2, "2");
+     //   cards.add(card3, "3");
         
         pane.add(cards);
 		
@@ -173,11 +176,33 @@ public class MainFrame implements ActionListener {
 		int wifi = facPanel.getWifi()? 1: 0;
 		int allHours = facPanel.getOpenAllHours()? 1: 0;
 		int toilet = facPanel.getEnSuite()? 1: 0;
-
+		
+		
 		Facilities facilities = new Facilities(allHours,bar,wifi,toilet,TV);
 		PriceGroup pricegroup = new PriceGroup(pricePanel.getPrice1(), pricePanel.getPrice2(), pricePanel.getPrice3());
 		StayLength day = new StayLength(2015, datePanel.getArrMonth(), datePanel.getArrDay(), 2015, datePanel.getDepMonth(), datePanel.getDepDay());
 		request = constructRequest(facilities, day, (double)nrBedPanel.getNrBeds(), locPanel.getLocation(), pricegroup);		
+		
+		
+	
+		HotelSearch hotelSearch = new HotelSearch();
+	
+		
+		try {
+			hotels = hotelSearch.getMatchingHotelsFromDB(request);
+			
+		} catch (ConnectException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+		//resultPanel.add(hotelListPanel.makeHotelListPanel(hotels));
+		
+		JPanel card2 = new JPanel();
+	    card2.add(makeResultPanel());
+	        
+	    cards.add(card2, "2");
 		
 		CardLayout cardLayout = (CardLayout) cards.getLayout();
         cardLayout.next(cards);  

@@ -10,29 +10,35 @@ import javax.swing.*;
 
 public class HotelListPanel implements ActionListener{
 	
-	public JPanel makeHotelListPanel(Request request) throws ConnectException{
+	public JPanel makeHotelListPanel(ArrayList<Hotel> hotels) {
 		JPanel hotelListPanel = new JPanel();
-		JLabel hotelListLabel = new JLabel("Listi af hótelum");
 		
-		ArrayList<Hotel> hotelList = new ArrayList<Hotel>();
-		HotelSearch hotelSearch = new HotelSearch();
-		hotelSearch.makeQuery(request);
-		hotelList = hotelSearch.getMatchingHotelsFromDB(request);
+		System.out.println("ég fór í hótellistpanel");
+		JLabel hotelListLabel = new JLabel("Listi af h��telum");
 		
-		System.out.println(hotelList.get(0).getHotelName());
+		
+		JPanel[] hotel = new JPanel[hotels.size()];
+		
+		for (int i = 0; i< hotels.size(); i++) {
+			JLabel label = new JLabel("OMG");
+			hotel[i] = new JPanel();
+			
+			hotel[i].add(label);
+			
+			System.out.println(hotels.get(i));
+			hotelListPanel.add(hotel[i]);
+			
+			System.out.println(i);
+		}
+		
+		
+		
 		
 		hotelListPanel.add(hotelListLabel);
+		
 	
-		JPanel locationPanel = new JPanel();
-		JLabel locationLabel = new JLabel("Choose destination : ");
-		String comboBoxItems[] = {"SELECT", "Reykjavik", "Akureyri", "Ísafjörður", "Höfn", "Egilsstaðir"};
-		JComboBox locationCombo = new JComboBox(comboBoxItems);
 		
-		locationCombo.addActionListener(this);
-		
-		locationPanel.add(locationLabel);
-		locationPanel.add(locationCombo);	
-		
+	
 		return hotelListPanel;
 	}
 

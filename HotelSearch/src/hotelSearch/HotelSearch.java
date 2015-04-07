@@ -18,7 +18,7 @@ public class HotelSearch implements QueryDB{
 	public HotelSearch(){
 		
 		DB_DRIVER = "org.sqlite.JDBC";
-		DB_CONNECTION = "jdbc:sqlite:/Users/dagny/Documents/HotelSearch/T2_hostel_search/HotelSearch/HotelData";
+		DB_CONNECTION = "jdbc:sqlite:/Users/Eyrun/git/HotelData";
 		this.selectSQL = "";
 		this.request = request;
 	}
