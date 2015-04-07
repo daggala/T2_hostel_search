@@ -1,12 +1,5 @@
 package gui;
 
-import hotelSearch.ConnectException;
-import hotelSearch.Facilities;
-import hotelSearch.Hotel;
-import hotelSearch.HotelSearch;
-import hotelSearch.PriceGroup;
-import hotelSearch.StayLength;
-import hotelSearch.Request;
 import hotelSearch.*;
 
 import javax.swing.*;
@@ -66,10 +59,13 @@ public class MainFrame implements ActionListener {
 	
 	public JPanel makeResultPanel(){
 		JPanel resultPanel = new JPanel();
-		JLabel resultLabel = new JLabel("List of available hotels");
+		JLabel resultLabel = new JLabel();
 		
 		JButton backButton = new JButton("Back");
 		JButton forwardButton = new JButton("Forward");
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.add(backButton);
+		buttonPanel.add(forwardButton);
 		
 		backButton.addActionListener(new ActionListener()
         {
@@ -89,10 +85,12 @@ public class MainFrame implements ActionListener {
                 cardLayout.next(cards);
             }
         });
-		resultPanel.add(hotelListPanel.makeHotelListPanel(hotels));
-		resultPanel.add(forwardButton);
-		resultPanel.add(backButton);
-		resultPanel.add(resultLabel);
+		
+		BorderLayout layout = new BorderLayout();
+		resultPanel.setLayout(layout);
+		resultPanel.add(hotelListPanel.makeHotelListPanel(hotels), BorderLayout.CENTER);
+		resultPanel.add(buttonPanel, BorderLayout.SOUTH);
+		resultPanel.add(resultLabel, BorderLayout.NORTH);
 		
 		
 		
@@ -152,8 +150,7 @@ public class MainFrame implements ActionListener {
         //Create and set up the content pane.
         MainFrame contentPane = new MainFrame();
         contentPane.addComponentToPane(frame.getContentPane());
-     
-        
+       
         //Display the window.
         frame.setSize(800, 400);
         frame.setVisible(true);
@@ -193,7 +190,8 @@ public class MainFrame implements ActionListener {
 			
 		} catch (ConnectException e1) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			//e1.printStackTrace();
+			System.out.println("VIRKA EKKI");
 		}
 		
 		
