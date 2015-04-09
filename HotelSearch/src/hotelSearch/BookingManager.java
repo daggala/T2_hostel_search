@@ -12,11 +12,11 @@ public class BookingManager {
 	
 	public BookingManager(){
 		DB_DRIVER = "org.sqlite.JDBC";
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
 		DB_CONNECTION = "jdbc:sqlite:/Users/Eyrun/git/HotelData";
-=======
-		DB_CONNECTION = "jdbc:sqlite:/Users/dagny/git/T2_hostel_search/HotelSearch/HotelData";
->>>>>>> Stashed changes
+//=======
+		//DB_CONNECTION = "jdbc:sqlite:/Users/dagny/git/T2_hostel_search/HotelSearch/HotelData";
+//>>>>>>> Stashed changes
 	}			
 	
 	public void reduceAvailability(Hotel hotel, Request request) throws ConnectException{

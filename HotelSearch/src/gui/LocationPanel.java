@@ -15,7 +15,7 @@ public class LocationPanel implements ActionListener  {
 			
 			JPanel locationPanel = new JPanel();
 			JLabel locationLabel = new JLabel("Choose destination : ");
-			String comboBoxItems[] = {"SELECT", "Reykjavik", "Akureyri", "Ísafjörður", "Höfn", "Egilsstaðir"};
+			String comboBoxItems[] = {"SELECT", "Reykjavik", "Akureyri", "Isafjordur", "Hofn", "Egilsstadir"};
 			JComboBox locationCombo = new JComboBox(comboBoxItems);
 			
 			locationCombo.addActionListener(this);

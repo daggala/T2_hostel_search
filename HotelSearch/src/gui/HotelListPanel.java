@@ -14,6 +14,8 @@ import javax.swing.*;
 
 public class HotelListPanel implements ActionListener{
 	
+	
+	
 	public JPanel makeHotelListPanel(ArrayList<Hotel> hotels) {
 		
 		BorderLayout layout = new BorderLayout();
@@ -31,43 +33,52 @@ public class HotelListPanel implements ActionListener{
 		hotelListPanel.setLayout(new BoxLayout(hotelListPanel, BoxLayout.PAGE_AXIS));
 		JButton[] hotelButton = new JButton[hotels.size()];
 		
-		for (int i = 0; i< hotels.size(); i++) {
+			
+		if (hotels.size() == 0) {
+			//JLabel hotelListEmptyLabel = new JLabel("No hotels");
+		//	hotelPanel[0].add(hotelListEmptyLabel);
+		}
 		
-
-			hotelPanel[i] = new JPanel();
-		//	hotelPanel[i].setLayout(BorderLayout.CENTER);
+		else {
+		
+			for (int i = 0; i< hotels.size(); i++) {
 			
-		//	pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
-			hotelButton[i] = new JButton("Choose");
-			hotelButton[i].addActionListener(this);
-			
-			Hotel hotel = hotels.get(i);
-			//String hotel = hotels.get(i).toString();
-			
-			int hotelId = hotel.getHotelID();
-			String hotelName = hotel.getHotelName();
-			
-			
-			JLabel Idlabel = new JLabel(String.valueOf(hotelId));
-			JLabel nameLabel = new JLabel(hotelName);
-		//	label.add(hotel);
-			hotelPanel[i].add(Idlabel);
-			hotelPanel[i].add(nameLabel);
-			
-		//	hotelPanel[i].add(label, hotel);
-			
-			
-			hotelListPanel.add(hotelPanel[i]);
-			hotelListPanel.add(hotelButton[i]);
-			
-			System.out.println(i);
-			System.out.println(hotelId);
+	
+				hotelPanel[i] = new JPanel();
+		
+				hotelButton[i] = new JButton("Book");
+				hotelButton[i].addActionListener(this);
+				
+				Hotel hotel = hotels.get(i);
+				
+				
+				int hotelId = hotel.getHotelID();
+				String hotelName = hotel.getHotelName();
+				
+				
+				//JLabel Idlabel = new JLabel(String.valueOf(hotelId));
+				JLabel nameLabel = new JLabel(hotelName);
+				hotelPanel[i].add(nameLabel);
+		
+				
+				hotelListPanel.add(hotelPanel[i]);
+				hotelListPanel.add(hotelButton[i]);
+				
+				System.out.println(i);
+				System.out.println(hotelId);
+				
+			}
 			
 		}
 		
 		return hotelListPanel;
 	}
 
+	public void clearPanel(ArrayList<Hotel> hotels) {
+		hotels = null;
+		makeHotelListPanel(hotels);
+		
+	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {

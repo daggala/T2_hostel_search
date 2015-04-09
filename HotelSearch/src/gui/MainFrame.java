@@ -75,6 +75,9 @@ public class MainFrame implements ActionListener {
             {
                 CardLayout cardLayout = (CardLayout) cards.getLayout();
                 cardLayout.previous(cards);
+                clearRequest();
+                hotelListPanel.clearPanel(hotels);
+                
             }
         });
 		
@@ -159,13 +162,30 @@ public class MainFrame implements ActionListener {
 		
 	}
 	
+	/*bætti try og catch */
 	public static Request constructRequest(Facilities fac, StayLength day, double beds, String loc, PriceGroup price){
-		Request req = new Request(loc, day, beds);
-		req.addFacilities(fac);
+		Request req = null;
+		try {
+			req = new Request(loc, day, beds);
+			req.addFacilities(fac);
+			req.addPriceGroup(price);
+		} catch (InvalidTotalBedsException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Ekki rétt request");
+			e.printStackTrace();
+		}
+	/*	req.addFacilities(fac);
 		req.addPriceGroup(price);
+		 */
 		return req;
 	} 
 
+	
+	// gerir test fljótlegri
+	public void clearRequest() {
+		hotels = null;
+		System.out.println("I did went to the clearRequest");
+	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -192,12 +212,11 @@ public class MainFrame implements ActionListener {
 			
 		} catch (ConnectException e1) {
 			// TODO Auto-generated catch block
-			//e1.printStackTrace();
+
 			System.out.println("VIRKA EKKI");
 		}
 		
 		
-		//resultPanel.add(hotelListPanel.makeHotelListPanel(hotels));
 		
 		JPanel card2 = new JPanel();
 	    card2.add(makeResultPanel());
