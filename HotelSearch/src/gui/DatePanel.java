@@ -29,14 +29,15 @@ public class DatePanel implements ActionListener {
 
 	public JPanel datePanelMaker() {
 		
-		Integer[] arrDaysCB = new Integer[31];
-		Integer[] depDaysCB = new Integer[31];
-		String[] arrMonthCB = {"SELECT", "June", "July"};
-		String[] depMonthCB = {"SELECT", "June", "July"};
-		
+		Integer[] arrDaysCB = new Integer[32];
+		Integer[] depDaysCB = new Integer[32];
+		String[] arrMonthCB = {"SELECT", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+		String[] depMonthCB = {"SELECT", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+		//arrDaysCB[0] = 0;
+		//depDaysCB[0] = 0;
 		for(int i = 0; i<arrDaysCB.length; i++) {
-			arrDaysCB[i] = i+1;
-			depDaysCB[i] = i+1;
+			arrDaysCB[i] = i;
+			depDaysCB[i] = i;
 			} 
 
 		
@@ -56,6 +57,7 @@ public class DatePanel implements ActionListener {
 			public void actionPerformed(ActionEvent e){
 				Integer chosenDay = (Integer) arrDayCombo.getSelectedItem();
 				arrDay = chosenDay;
+				
 			}
 		} );
 		
@@ -72,11 +74,41 @@ public class DatePanel implements ActionListener {
 		{
 			public void actionPerformed(ActionEvent e){
 				String chosenMonth = (String) arrMonthCombo.getSelectedItem();
+				if (chosenMonth == "January") {
+					arrMonth = 1;
+				}
+				if (chosenMonth == "February") {
+					arrMonth = 2;
+				}
+				if (chosenMonth == "March") {
+					arrMonth = 3;
+				}
+				if (chosenMonth == "April") {
+					arrMonth = 4;
+				}
+				if (chosenMonth == "May") {
+					arrMonth = 5;
+				}
 				if (chosenMonth == "June") {
 					arrMonth = 6;
 				}
-				else { 
-					arrMonth = 7; 
+				if (chosenMonth == "July") {
+					arrMonth = 7;
+				}
+				if (chosenMonth == "August") {
+					arrMonth = 8;
+				}
+				if (chosenMonth == "September") {
+					arrMonth = 9;
+				}
+				if (chosenMonth == "October") {
+					arrMonth = 10;
+				}
+				if (chosenMonth == "November") {
+					arrMonth = 11;
+				}
+				if (chosenMonth == "December") {
+					arrMonth = 12;
 				}
 			}
 		} );
@@ -85,11 +117,41 @@ public class DatePanel implements ActionListener {
 		{
 			public void actionPerformed(ActionEvent e){
 				String chosenMonth = (String) depMonthCombo.getSelectedItem();
+				if (chosenMonth == "January") {
+					depMonth = 1;
+				}
+				if (chosenMonth == "February") {
+					depMonth = 2;
+				}
+				if (chosenMonth == "March") {
+					depMonth = 3;
+				}
+				if (chosenMonth == "April") {
+					depMonth = 4;
+				}
+				if (chosenMonth == "May") {
+					depMonth = 5;
+				}
 				if (chosenMonth == "June") {
 					depMonth = 6;
 				}
-				else { 
-					depMonth = 7; 
+				if (chosenMonth == "July") {
+					depMonth = 7;
+				}
+				if (chosenMonth == "August") {
+					depMonth = 8;
+				}
+				if (chosenMonth == "September") {
+					depMonth = 9;
+				}
+				if (chosenMonth == "October") {
+					depMonth = 10;
+				}
+				if (chosenMonth == "November") {
+					depMonth = 11;
+				}
+				if (chosenMonth == "December") {
+					depMonth = 12;
 				}
 			}
 		} );

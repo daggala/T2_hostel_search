@@ -2,6 +2,7 @@ package testing;
 
 import static org.junit.Assert.*;
 import hotelSearch.Facilities;
+import hotelSearch.InvalidTotalBedsException;
 import hotelSearch.PriceGroup;
 import hotelSearch.QueryDB;
 import hotelSearch.StayLength;
@@ -23,7 +24,13 @@ public class TestMakeQueryString {
 		PriceGroup priceGroup = new PriceGroup(false, false, true);
 		
 		Facilities facs = new Facilities(1,0,0,0,0);
-		Request request = new Request("Reykjavik", day, beds);
+		Request request= null;
+		try {
+			request = new Request("Reykjavik", day, beds);
+		} catch (InvalidTotalBedsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		request.addFacilities(facs);
 		request.addPriceGroup(priceGroup);
 		

@@ -19,7 +19,7 @@ public class HotelSearch implements QueryDB{
 		
 		DB_DRIVER = "org.sqlite.JDBC";
 //<<<<<<< Updated upstream
-		DB_CONNECTION = "jdbc:sqlite:/Users/Eyrun/git/HotelData";
+		DB_CONNECTION = "jdbc:sqlite:/Users/hrefnaolafsdottir/Skoladot/HI/SoftwareDevelopment/Verkefni/database/HotelData";
 //=======
 //	DB_CONNECTION = "jdbc:sqlite:/Users/dagny/git/T2_hostel_search/HotelSearch/HotelData";
 //>>>>>>> Stashed changes
@@ -37,29 +37,30 @@ public class HotelSearch implements QueryDB{
 		
 		PriceGroup pricegroup = request.getPriceGroup();
 	    facs = request.getFacilities();
-	    
-	    boolean one = pricegroup.isInPricegroupOne();
-	    boolean two = pricegroup.isInPricegroupTwo();
-	   	boolean three = pricegroup.isInPricegroupThree();
-	   	
-	   	if(one == true && two == false && three == false){
-	   		selectSQL= selectSQL + " AND pricegroup= 1";
-	   	}
-	   	if(one == false && two == true && three == false){
-	    	selectSQL= selectSQL + " AND pricegroup= 2";
+	    if(pricegroup != null){
+		    boolean one = pricegroup.isInPricegroupOne();
+		    boolean two = pricegroup.isInPricegroupTwo();
+		   	boolean three = pricegroup.isInPricegroupThree();
+		   	
+		   	if(one == true && two == false && three == false){
+		   		selectSQL= selectSQL + " AND pricegroup= 1";
+		   	}
+		   	if(one == false && two == true && three == false){
+		    	selectSQL= selectSQL + " AND pricegroup= 2";
+		    }
+		   	if(one == false && two == false && three == true){
+		   		selectSQL= selectSQL + " AND pricegroup= 3";
+		   	}
+		   	if(one == true && two == true && three == false){
+	    		selectSQL= selectSQL + " AND (pricegroup = 1 OR pricegroup= 2)";
+	    	}
+		    if(one == false && two == true && three == true){
+		   		selectSQL= selectSQL + " AND (pricegroup = 2 OR pricegroup= 3)";
+		   	}
+		   	if(one == true && two == false && three == true){
+		   		selectSQL= selectSQL + " AND (pricegroup = 1 OR pricegroup= 3)";
+	    	}
 	    }
-	   	if(one == false && two == false && three == true){
-	   		selectSQL= selectSQL + " AND pricegroup= 3";
-	   	}
-	   	if(one == true && two == true && three == false){
-    		selectSQL= selectSQL + " AND (pricegroup = 1 OR pricegroup= 2)";
-    	}
-	    if(one == false && two == true && three == true){
-	   		selectSQL= selectSQL + " AND (pricegroup = 2 OR pricegroup= 3)";
-	   	}
-	   	if(one == true && two == false && three == true){
-	   		selectSQL= selectSQL + " AND (pricegroup = 1 OR pricegroup= 3)";
-    	}
 	    	
 	    
 	    if(facs != null){

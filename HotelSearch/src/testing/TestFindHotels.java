@@ -34,7 +34,7 @@ public class TestFindHotels {
 		
 		
 		try{
-			request = new Request("Reykjavik", day, 11);
+			request = new Request("Reykjavik", day, 11.0);
 		}
 		catch(InvalidTotalBedsException e){
 			System.out.println("Invalid number of beds requested");
