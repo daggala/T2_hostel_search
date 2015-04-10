@@ -209,8 +209,12 @@ public class MainFrame implements ActionListener {
 			JOptionPane.showMessageDialog(null, "Please enter a valid date");
 		}
 		CheckDate check = new CheckDate(day);
-		if(!check.isValid()){
+		if(!check.isValidDate()){
 			JOptionPane.showMessageDialog(null, "Arrival date must be before departure date");
+			day = null;
+		}
+		if(!check.isValidDuration()){
+			JOptionPane.showMessageDialog(null, "Duration must be shorter than 20 days");
 			day = null;
 		}
 
