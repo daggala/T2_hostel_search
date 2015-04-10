@@ -95,7 +95,7 @@ public class MainFrame implements ActionListener {
 		
 		BorderLayout layout = new BorderLayout();
 		resultPanel.setLayout(layout);
-		resultPanel.add(hotelListPanel.makeHotelListPanel(hotels), BorderLayout.CENTER);
+		resultPanel.add(hotelListPanel.makeHotelListPanel(hotels, request), BorderLayout.CENTER);
 		resultPanel.add(buttonPanel, BorderLayout.SOUTH);
 		resultPanel.add(resultLabel, BorderLayout.NORTH);
 		

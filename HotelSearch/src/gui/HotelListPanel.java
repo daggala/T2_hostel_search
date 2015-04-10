@@ -13,10 +13,13 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class HotelListPanel implements ActionListener{
+	private ArrayList<Hotel> hotels =  new ArrayList<Hotel>();
+	private Request request;
 	
 	
-	
-	public JPanel makeHotelListPanel(ArrayList<Hotel> hotels) {
+	public JPanel makeHotelListPanel(ArrayList<Hotel> hotels, Request request) {
+		this.hotels = hotels;
+		this.request = request;
 		
 		BorderLayout layout = new BorderLayout();
 			
@@ -47,6 +50,7 @@ public class HotelListPanel implements ActionListener{
 				hotelPanel[i] = new JPanel();
 		
 				hotelButton[i] = new JButton("Book");
+				hotelButton[i].setActionCommand(Integer.toString(i));
 				hotelButton[i].addActionListener(this);
 				
 				Hotel hotel = hotels.get(i);
@@ -76,14 +80,25 @@ public class HotelListPanel implements ActionListener{
 
 	public void clearPanel(ArrayList<Hotel> hotels) {
 		hotels = null;
-		makeHotelListPanel(hotels);
+		makeHotelListPanel(hotels, request);
 		
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("ÞAÐ VAR ÝTT MÉR");
+		String cmd = e.getActionCommand();
+		Hotel hotel = hotels.get(Integer.parseInt(cmd));
+		String name = hotel.getHotelName();
+		System.out.println(name);
+		BookingManager book = new BookingManager();
+		try {
+			book.reduceAvailability(hotel, request);
+			System.out.println(name+" hefur verið bókað");
+		} catch (ConnectException e1) {
+			// TODO Auto-generated catch block
+			System.out.println("hótel var ekki bókað");
+		}
 		
 	}
 
