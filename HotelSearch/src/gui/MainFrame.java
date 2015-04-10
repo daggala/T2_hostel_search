@@ -4,6 +4,8 @@ import hotelSearch.*;
 
 import javax.swing.*;
 
+import org.joda.time.IllegalFieldValueException;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -199,10 +201,19 @@ public class MainFrame implements ActionListener {
 		
 		Facilities facilities = new Facilities(allHours,bar,wifi,toilet,TV);
 		PriceGroup pricegroup = new PriceGroup(pricePanel.getPrice1(), pricePanel.getPrice2(), pricePanel.getPrice3());
-		if((datePanel.getArrMonth() == 2 && datePanel.getArrDay() > 28) || (datePanel.getDepMonth()== 2 && datePanel.getDepDay() > 28) || datePanel.getArrDay() == 0 || datePanel.getDepDay()==0){
+		StayLength day = null;
+		try{
+			day = new StayLength(2015, datePanel.getArrMonth(), datePanel.getArrDay(), 2015, datePanel.getDepMonth(), datePanel.getDepDay());
+
+		} catch(IllegalFieldValueException e2){
 			JOptionPane.showMessageDialog(null, "Please enter a valid date");
 		}
-		StayLength day = new StayLength(2015, datePanel.getArrMonth(), datePanel.getArrDay(), 2015, datePanel.getDepMonth(), datePanel.getDepDay());
+		CheckDate check = new CheckDate(day);
+		if(!check.isValid()){
+			JOptionPane.showMessageDialog(null, "Arrival date must be before departure date");
+			day = null;
+		}
+
 		request = constructRequest(facilities, day, (double)nrBedPanel.getNrBeds(), locPanel.getLocation(), pricegroup);		
 		
 		

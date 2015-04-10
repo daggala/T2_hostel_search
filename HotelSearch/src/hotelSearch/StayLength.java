@@ -32,6 +32,30 @@ public class StayLength {
 			end = new DateTime(this.departureYear, this.departureMonth, this.departureDate, 0, 0, 0, 0);
 		}
 		
+		public int getArrYear() {
+			return arrivalYear;
+		}
+
+		public int getArrMonth() {
+			return arrivalMonth;
+		}
+
+		public int getArrDay() {
+			return arrivalDate;
+		}
+
+		public int getDepYear() {
+			return departureYear;
+		}
+
+		public int getDepMonth() {
+			return departureMonth;
+		}
+
+		public int getDepDay() {
+			return departureDate;
+		}
+		
 		//Returns number of days the guest requests
 		public int getDuration(){
 			
