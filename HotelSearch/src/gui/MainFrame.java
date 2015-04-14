@@ -148,6 +148,13 @@ public class MainFrame implements ActionListener {
 							book.reduceAvailability(hotel, request);
 							JOptionPane.showMessageDialog(null, "Booking successful");
 							System.out.println(name+" hefur verið bókað");
+							JPanel card3 = new JPanel();
+						    card3.add(makeBookingPanel());
+						        
+						    cards.add(card3, "3");
+							
+							CardLayout cardLayout = (CardLayout) cards.getLayout();
+					        cardLayout.last(cards);  
 						} catch (ConnectException e1) {
 							// TODO Auto-generated catch block
 							System.out.println("hótel var ekki bókað");
@@ -185,7 +192,29 @@ public class MainFrame implements ActionListener {
 	public JPanel makeBookingPanel() {
 		JPanel bookingPanel = new JPanel();
 		JLabel bookingLabel = new JLabel("Booking process");
+		
+		JButton backButton = new JButton("Back");
+
+		
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.add(backButton);
+		
+		backButton.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent ae)
+            {
+                CardLayout cardLayout = (CardLayout) cards.getLayout();
+                cardLayout.first(cards);
+                //clearRequest();
+                //hotelListPanel.clearPanel(hotels);
+                
+            }
+        });
+		
+		
+		
 		bookingPanel.add(bookingLabel);
+		bookingPanel.add(buttonPanel);
 		return bookingPanel;
 	}
 	
