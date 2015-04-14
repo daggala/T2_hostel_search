@@ -94,6 +94,7 @@ public class HotelListPanel implements ActionListener{
 		BookingManager book = new BookingManager();
 		try {
 			book.reduceAvailability(hotel, request);
+			JOptionPane.showMessageDialog(null, "Booking successful");
 			System.out.println(name+" hefur verið bókað");
 		} catch (ConnectException e1) {
 			// TODO Auto-generated catch block

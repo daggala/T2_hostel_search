@@ -76,7 +76,7 @@ public class MainFrame implements ActionListener {
             public void actionPerformed(ActionEvent ae)
             {
                 CardLayout cardLayout = (CardLayout) cards.getLayout();
-                cardLayout.previous(cards);
+                cardLayout.first(cards);
                 clearRequest();
                 hotelListPanel.clearPanel(hotels);
                 
@@ -90,6 +90,7 @@ public class MainFrame implements ActionListener {
             {
                 CardLayout cardLayout = (CardLayout) cards.getLayout();
                 cardLayout.next(cards);
+                //System.out.println(cards.length);
             }
         });
 		
@@ -242,7 +243,7 @@ public class MainFrame implements ActionListener {
 	    cards.add(card2, "2");
 		
 		CardLayout cardLayout = (CardLayout) cards.getLayout();
-        cardLayout.next(cards);  
+        cardLayout.last(cards);  
 		
 	
 	}  
