@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
-import hotelSearch.BookingManager;
+import hotelSearch.BookingController;
 import hotelSearch.ConnectException;
 import hotelSearch.Facilities;
 import hotelSearch.Hotel;
@@ -45,7 +45,7 @@ public class TestBookingManager {
 		
 		Hotel hotel = list.get(0);
 		
-		BookingManager bm = new BookingManager();
+		BookingController bm = new BookingController();
 		bm.reduceAvailability(hotel, request);
 		
 		

@@ -1,7 +1,7 @@
 package testing;
 
 import static org.junit.Assert.*;
-import hotelSearch.BookingManager;
+import hotelSearch.BookingController;
 import hotelSearch.ConnectException;
 import hotelSearch.Facilities;
 import hotelSearch.HotelSearch;

@@ -127,7 +127,7 @@ public class MainFrame implements ActionListener {
 					public void actionPerformed(ActionEvent e) {
 						String cmd = e.getActionCommand();
 						Hotel hotel = hotels.get(Integer.parseInt(cmd));
-						BookingManager book = new BookingManager();
+						BookingController book = new BookingController();
 						try {
 							book.reduceAvailability(hotel, request);
 							JPanel card3 = new JPanel();

@@ -5,12 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class BookingManager {
+public class BookingController {
 	
 	private final String DB_DRIVER;
 	private final String DB_CONNECTION;
 	
-	public BookingManager(){
+	public BookingController(){
 		DB_DRIVER = "org.sqlite.JDBC";
 //<<<<<<< Updated upstream
 		//DB_CONNECTION = "jdbc:sqlite:/Users/Eyrun/git/HotelData";
