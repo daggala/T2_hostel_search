@@ -35,6 +35,12 @@ public class NrBedsPanel implements ActionListener {
 		// TODO Auto-generated method stub
 		 JComboBox combo = (JComboBox)e.getSource();
 		 String chosenNrOfBeds = (String)combo.getSelectedItem();
-		 this.nrOfBeds = Integer.parseInt(chosenNrOfBeds);
+		 if(!chosenNrOfBeds.equals("SELECT")){
+			 this.nrOfBeds = Integer.parseInt(chosenNrOfBeds);
+			 System.out.println(nrOfBeds);
+		 }
+		 else{
+			 this.nrOfBeds = 0;
+		 }
 	}
 }

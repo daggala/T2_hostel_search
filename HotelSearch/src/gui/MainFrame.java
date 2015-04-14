@@ -162,7 +162,7 @@ public class MainFrame implements ActionListener {
 	
 	public JPanel makeBookingPanel() {
 		JPanel bookingPanel = new JPanel();
-		JLabel bookingLabel = new JLabel("Booking process");
+		JLabel bookingLabel = new JLabel("Booking successful");
 		
 		JButton backButton = new JButton("Back");
 
@@ -180,8 +180,8 @@ public class MainFrame implements ActionListener {
         });
 		
 		
-		bookingPanel.add(bookingLabel);
-		bookingPanel.add(buttonPanel);
+		bookingPanel.add(bookingLabel, BorderLayout.NORTH);
+		bookingPanel.add(buttonPanel, BorderLayout.SOUTH);
 		return bookingPanel;
 	}
 	
@@ -222,18 +222,17 @@ public class MainFrame implements ActionListener {
 	}
 	
 	/*bætti try og catch */
-	public static Request constructRequest(Facilities fac, StayLength day, double beds, String loc, PriceGroup price){
+	public static Request constructRequest(Facilities fac, StayLength day, double beds, String loc, PriceGroup price) throws InvalidTotalBedsException{
 		Request req = null;
-		try {
+		if(beds != 0) {
 			req = new Request(loc, day, beds);
 			req.addFacilities(fac);
 			req.addPriceGroup(price);
-		} catch (InvalidTotalBedsException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Ekki rétt request");
-			e.printStackTrace();
 		}
-
+		else  {
+			throw new InvalidTotalBedsException();
+		}
+		
 		return req;
 	} 
 
@@ -269,7 +268,14 @@ public class MainFrame implements ActionListener {
 			day = null;
 		}
 
-		request = constructRequest(facilities, day, (double)nrBedPanel.getNrBeds(), locPanel.getLocation(), pricegroup);		
+		try {
+			request = constructRequest(facilities, day, (double)nrBedPanel.getNrBeds(), locPanel.getLocation(), pricegroup);
+		} catch (InvalidTotalBedsException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+			JOptionPane.showMessageDialog(null, "You must select a number of guests");
+			request = null;
+		}		
 		
 		
 	

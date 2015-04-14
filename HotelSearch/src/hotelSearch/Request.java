@@ -13,7 +13,7 @@ public class Request {
 	public Request(String location, StayLength day, Double totalBeds) throws InvalidTotalBedsException{
 		this.location = location;
 	
-		if (totalBeds <= 10)
+		if (totalBeds <= 10 || totalBeds == 0)
 			this.totalBeds = totalBeds;
 		else
 			throw new InvalidTotalBedsException();
