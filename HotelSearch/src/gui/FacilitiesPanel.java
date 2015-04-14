@@ -37,7 +37,6 @@ public class FacilitiesPanel implements ItemListener {
 		facPanel.add(chkOpenAllHoursCB);
 		facPanel.add(chkBarCB);
 		
-		
 		return facPanel;
 	}
 	
@@ -79,22 +78,18 @@ public class FacilitiesPanel implements ItemListener {
 		
 		if (e.getItemSelectable() ==  chkTVCB) {
 			if (checked) { 
-				System.out.println("TV checked");
 				chkTV = true;
 			}
 			else {
-				System.out.println("TV unchecked");
 				chkTV = false;
 				
 			}
 		}
 		if (e.getItemSelectable() ==  chkEnSuiteCB) {
 			if (checked) { 
-				System.out.println("En suite checked");
 				chkEnSuite = true;
 			}
 			else {
-				System.out.println("En suite UNchecked");
 				chkEnSuite = false;
 			}
 		}
@@ -102,33 +97,27 @@ public class FacilitiesPanel implements ItemListener {
 		
 		if (e.getItemSelectable() ==  chkWifiCB) {
 			if (checked) { 
-				System.out.println("Wifi checked");
 				chkWifi = true;
 			}
 			else {
-				System.out.println("Wifi UNchecked");
 				chkWifi = false;
 			}
 		}
 		
 		if (e.getItemSelectable() ==  chkOpenAllHoursCB) {
 			if (checked) { 
-				System.out.println("23 checked");
 				chkOpenAllHours = true;
 			}
 			else {
-				System.out.println("23 UNchecked");
 				chkOpenAllHours = false;
 			}
 		}
 		
 		if (e.getItemSelectable() ==  chkBarCB) {
 			if (checked) { 
-				System.out.println("Bar checked");
 				chkBar = true;
 			}
 			else {
-				System.out.println("Bar UNchecked");
 				chkBar = false;
 			}
 		}

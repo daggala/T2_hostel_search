@@ -12,14 +12,10 @@ import javax.swing.*;
 
 
 /*
- * ATH að melda fyrir því að júní er 30 dagar og júlí 31, þannig ða dropdown verður
- *  að vita að júní er 30
- *  
- *  Melda fyrir að arr sé ekki á eftir dep
  *  
  *  Bannað að velja fleiri en 20 daga'
  *  
- *  Eitthvað skrýtið gerist í DB þegar við veljum dagsetningar sem eru ekki til
+ * 
  *  */
 
 public class DatePanel implements ActionListener {
@@ -33,8 +29,6 @@ public class DatePanel implements ActionListener {
 		Integer[] depDaysCB = new Integer[32];
 		String[] arrMonthCB = {"SELECT", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 		String[] depMonthCB = {"SELECT", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-		//arrDaysCB[0] = 0;
-		//depDaysCB[0] = 0;
 		for(int i = 0; i<arrDaysCB.length; i++) {
 			arrDaysCB[i] = i;
 			depDaysCB[i] = i;

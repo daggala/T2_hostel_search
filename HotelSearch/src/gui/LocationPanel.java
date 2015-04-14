@@ -19,21 +19,15 @@ public class LocationPanel implements ActionListener  {
 			JComboBox locationCombo = new JComboBox(comboBoxItems);
 			
 			locationCombo.addActionListener(this);
-			
 			locationPanel.add(locationLabel);
 			locationPanel.add(locationCombo);
-			
-			
+				
 			return locationPanel;
 		}
-	
 	
 	public String getLocation() {
 		return location;
 	}
-	
-	
-	
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -42,8 +36,5 @@ public class LocationPanel implements ActionListener  {
 				 JComboBox combo = (JComboBox)e.getSource();
 				 String chosenLocation = (String)combo.getSelectedItem();
 				 this.location = chosenLocation;
-				 System.out.println(location);
-		
 	}
-
 }

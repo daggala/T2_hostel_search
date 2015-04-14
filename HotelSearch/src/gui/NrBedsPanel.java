@@ -20,10 +20,8 @@ public class NrBedsPanel implements ActionListener {
 		JComboBox nrBedsCombo = new JComboBox(comboBoxItems);
 		
 		nrBedsCombo.addActionListener(this);
-		
 		nrBedPanel.add(nrBedLabel);
 		nrBedPanel.add(nrBedsCombo);
-		
 		
 		return nrBedPanel;
 	}
@@ -38,8 +36,5 @@ public class NrBedsPanel implements ActionListener {
 		 JComboBox combo = (JComboBox)e.getSource();
 		 String chosenNrOfBeds = (String)combo.getSelectedItem();
 		 this.nrOfBeds = Integer.parseInt(chosenNrOfBeds);
-		 
-		 System.out.println(nrOfBeds);
 	}
-
 }

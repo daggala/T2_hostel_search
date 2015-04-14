@@ -12,13 +12,7 @@ import java.util.*;
 
 public class MainFrame implements ActionListener {
 	
-	private static JFrame mainFrame;
-	private JPanel mainGUI;
-	private static JPanel searchPanel;
-	private static JPanel resultPanel;
-	private JLabel headerLabel;
-	private JButton searchBtn;
-	private static Container contentPane;
+
 	JPanel cards; //a panel that uses CardLayout
 	private Container container;
 	private Request request;
@@ -29,7 +23,6 @@ public class MainFrame implements ActionListener {
 	FacilitiesPanel facPanel = new FacilitiesPanel();
 	PricePanel pricePanel = new PricePanel();
 	NrBedsPanel nrBedPanel = new NrBedsPanel();
-	HotelListPanel hotelListPanel = new HotelListPanel();
 
 	
 	// make the first window
@@ -75,9 +68,6 @@ public class MainFrame implements ActionListener {
             {
                 CardLayout cardLayout = (CardLayout) cards.getLayout();
                 cardLayout.first(cards);
-                clearRequest();
-                hotelListPanel.clearPanel(hotels);
-                
             }
         });
 		
@@ -88,7 +78,6 @@ public class MainFrame implements ActionListener {
             {
                 CardLayout cardLayout = (CardLayout) cards.getLayout();
                 cardLayout.next(cards);
-                //System.out.println(cards.length);
             }
         });
 		
@@ -114,10 +103,8 @@ public class MainFrame implements ActionListener {
 		JPanel hotelListPanel = new JPanel();
 		
 		hotelListPanel.add(hotelListLabel, BorderLayout.NORTH);
-		System.out.println("ég fór í hótellistpanel");
 		
 		JPanel[] hotelPanel = new JPanel[hotels.size()];
-		//hotelPanel[hotels.size()].setLayout(new BoxLayout(hotelPanel, BoxLayout.Y_AXIS));
 		hotelListPanel.setLayout(new BoxLayout(hotelListPanel, BoxLayout.PAGE_AXIS));
 		JButton[] hotelButton = new JButton[hotels.size()];
 		
@@ -138,26 +125,18 @@ public class MainFrame implements ActionListener {
 				hotelButton[i].setActionCommand(Integer.toString(i));
 				hotelButton[i].addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent e) {
-						// TODO Auto-generated method stub
 						String cmd = e.getActionCommand();
 						Hotel hotel = hotels.get(Integer.parseInt(cmd));
-						String name = hotel.getHotelName();
-						System.out.println(name);
 						BookingManager book = new BookingManager();
 						try {
 							book.reduceAvailability(hotel, request);
-							JOptionPane.showMessageDialog(null, "Booking successful");
-							System.out.println(name+" hefur verið bókað");
 							JPanel card3 = new JPanel();
 						    card3.add(makeBookingPanel());
-						        
 						    cards.add(card3, "3");
-							
 							CardLayout cardLayout = (CardLayout) cards.getLayout();
 					        cardLayout.last(cards);  
 						} catch (ConnectException e1) {
-							// TODO Auto-generated catch block
-							System.out.println("hótel var ekki bókað");
+							JOptionPane.showMessageDialog(null, "Booking was not successful");
 						}
 						
 					}
@@ -166,25 +145,17 @@ public class MainFrame implements ActionListener {
 				
 				Hotel hotel = hotels.get(i);
 				
-				
-				int hotelId = hotel.getHotelID();
 				String hotelName = hotel.getHotelName();
 				
 				
 				JLabel nameLabel = new JLabel(hotelName);
 				hotelPanel[i].add(nameLabel);
-		
 				
 				hotelListPanel.add(hotelPanel[i]);
 				hotelListPanel.add(hotelButton[i]);
 				
-				System.out.println(i);
-				System.out.println(hotelId);
-				
 			}
-			
 		}
-		
 		return hotelListPanel;
 	}
 	
@@ -204,13 +175,9 @@ public class MainFrame implements ActionListener {
             public void actionPerformed(ActionEvent ae)
             {
                 CardLayout cardLayout = (CardLayout) cards.getLayout();
-                cardLayout.first(cards);
-                //clearRequest();
-                //hotelListPanel.clearPanel(hotels);
-                
+                cardLayout.first(cards);  
             }
         });
-		
 		
 		
 		bookingPanel.add(bookingLabel);
@@ -218,31 +185,16 @@ public class MainFrame implements ActionListener {
 		return bookingPanel;
 	}
 	
-	public JPanel makeConfirmPanel() {
-		JPanel confirmPanel = new JPanel();
-		JLabel confirmLabel = new JLabel("Enter details!");
-		confirmPanel.add(confirmLabel);
-		return confirmPanel;
-	}
-	
 	private void addComponentToPane(Container pane) {
-		// TODO Auto-generated method stub
 		
 		//Create the "cards".
         JPanel card1 = new JPanel();
         card1.add(makeSearchPanel());
         
-        JPanel card2 = new JPanel();
-        card2.add(makeResultPanel());
-                
-        JPanel card3 = new JPanel();
-        card3.add(makeBookingPanel());
         
       //Create the panel that contains the "cards".
         cards = new JPanel(new CardLayout());
         cards.add(card1, "1");
-     //   cards.add(card2, "2");
-     //   cards.add(card3, "3");
         
         pane.add(cards);
 		
@@ -281,19 +233,13 @@ public class MainFrame implements ActionListener {
 			System.out.println("Ekki rétt request");
 			e.printStackTrace();
 		}
-	/*	req.addFacilities(fac);
-		req.addPriceGroup(price);
-		 */
+
 		return req;
 	} 
 
 	
-	// gerir test fljótlegri
-	public void clearRequest() {
-		hotels = null;
-		System.out.println("I did went to the clearRequest");
-	}
-	
+
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
