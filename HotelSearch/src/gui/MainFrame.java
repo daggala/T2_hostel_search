@@ -10,8 +10,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-/*Gera clear method? */
-
 public class MainFrame implements ActionListener {
 	
 	private static JFrame mainFrame;
@@ -96,7 +94,7 @@ public class MainFrame implements ActionListener {
 		
 		BorderLayout layout = new BorderLayout();
 		resultPanel.setLayout(layout);
-		resultPanel.add(hotelListPanel.makeHotelListPanel(hotels, request), BorderLayout.CENTER);
+		resultPanel.add(makeHotelListPanel(hotels, request), BorderLayout.CENTER);
 		resultPanel.add(buttonPanel, BorderLayout.SOUTH);
 		resultPanel.add(resultLabel, BorderLayout.NORTH);
 		
@@ -104,6 +102,66 @@ public class MainFrame implements ActionListener {
 		
 		return resultPanel;
 	}
+	
+	
+	
+	public JPanel makeHotelListPanel(ArrayList<Hotel> hotels, Request request) {
+		this.hotels = hotels;
+		this.request = request;
+					
+		JLabel hotelListLabel = new JLabel("List of results:");
+	
+		JPanel hotelListPanel = new JPanel();
+		
+		hotelListPanel.add(hotelListLabel, BorderLayout.NORTH);
+		System.out.println("ég fór í hótellistpanel");
+		
+		JPanel[] hotelPanel = new JPanel[hotels.size()];
+		//hotelPanel[hotels.size()].setLayout(new BoxLayout(hotelPanel, BoxLayout.Y_AXIS));
+		hotelListPanel.setLayout(new BoxLayout(hotelListPanel, BoxLayout.PAGE_AXIS));
+		JButton[] hotelButton = new JButton[hotels.size()];
+		
+			
+		if (hotels.size() == 0) {
+			//JLabel hotelListEmptyLabel = new JLabel("No hotels");
+		//	hotelPanel[0].add(hotelListEmptyLabel);
+		}
+		
+		else {
+		
+			for (int i = 0; i< hotels.size(); i++) {
+			
+	
+				hotelPanel[i] = new JPanel();
+		
+				hotelButton[i] = new JButton("Book");
+				hotelButton[i].setActionCommand(Integer.toString(i));
+				hotelButton[i].addActionListener(this);
+				
+				Hotel hotel = hotels.get(i);
+				
+				
+				int hotelId = hotel.getHotelID();
+				String hotelName = hotel.getHotelName();
+				
+				
+				JLabel nameLabel = new JLabel(hotelName);
+				hotelPanel[i].add(nameLabel);
+		
+				
+				hotelListPanel.add(hotelPanel[i]);
+				hotelListPanel.add(hotelButton[i]);
+				
+				System.out.println(i);
+				System.out.println(hotelId);
+				
+			}
+			
+		}
+		
+		return hotelListPanel;
+	}
+	
 	
 	public JPanel makeBookingPanel() {
 		JPanel bookingPanel = new JPanel();
@@ -128,9 +186,7 @@ public class MainFrame implements ActionListener {
         
         JPanel card2 = new JPanel();
         card2.add(makeResultPanel());
-        
-      //resultPanel.add(hotelListPanel.makeHotelListPanel(hotels));
-        
+                
         JPanel card3 = new JPanel();
         card3.add(makeBookingPanel());
         

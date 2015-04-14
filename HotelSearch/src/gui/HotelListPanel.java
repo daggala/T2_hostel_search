@@ -60,7 +60,6 @@ public class HotelListPanel implements ActionListener{
 				String hotelName = hotel.getHotelName();
 				
 				
-				//JLabel Idlabel = new JLabel(String.valueOf(hotelId));
 				JLabel nameLabel = new JLabel(hotelName);
 				hotelPanel[i].add(nameLabel);
 		
@@ -80,8 +79,7 @@ public class HotelListPanel implements ActionListener{
 
 	public void clearPanel(ArrayList<Hotel> hotels) {
 		hotels = null;
-		makeHotelListPanel(hotels, request);
-		
+		makeHotelListPanel(hotels, request);	
 	}
 	
 	@Override
