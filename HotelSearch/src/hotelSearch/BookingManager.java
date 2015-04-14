@@ -13,8 +13,8 @@ public class BookingManager {
 	public BookingManager(){
 		DB_DRIVER = "org.sqlite.JDBC";
 //<<<<<<< Updated upstream
-		DB_CONNECTION = "jdbc:sqlite:/Users/Eyrun/git/HotelData";
-//		DB_CONNECTION = "jdbc:sqlite:/Users/hrefnaolafsdottir/Skoladot/HI/SoftwareDevelopment/Verkefni/database/HotelData";
+		//DB_CONNECTION = "jdbc:sqlite:/Users/Eyrun/git/HotelData";
+		DB_CONNECTION = "jdbc:sqlite:/Users/hrefnaolafsdottir/Skoladot/HI/SoftwareDevelopment/Verkefni/database/HotelData";
 		
 //=======
 		//DB_CONNECTION = "jdbc:sqlite:/Users/dagny/git/T2_hostel_search/HotelSearch/HotelData";

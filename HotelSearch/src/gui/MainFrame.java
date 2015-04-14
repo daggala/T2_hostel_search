@@ -105,7 +105,7 @@ public class MainFrame implements ActionListener {
 	
 	
 	
-	public JPanel makeHotelListPanel(ArrayList<Hotel> hotels, Request request) {
+	public JPanel makeHotelListPanel(final ArrayList<Hotel> hotels, final Request request) {
 		this.hotels = hotels;
 		this.request = request;
 					
@@ -136,7 +136,26 @@ public class MainFrame implements ActionListener {
 		
 				hotelButton[i] = new JButton("Book");
 				hotelButton[i].setActionCommand(Integer.toString(i));
-				hotelButton[i].addActionListener(this);
+				hotelButton[i].addActionListener(new ActionListener(){
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						String cmd = e.getActionCommand();
+						Hotel hotel = hotels.get(Integer.parseInt(cmd));
+						String name = hotel.getHotelName();
+						System.out.println(name);
+						BookingManager book = new BookingManager();
+						try {
+							book.reduceAvailability(hotel, request);
+							JOptionPane.showMessageDialog(null, "Booking successful");
+							System.out.println(name+" hefur verið bókað");
+						} catch (ConnectException e1) {
+							// TODO Auto-generated catch block
+							System.out.println("hótel var ekki bókað");
+						}
+						
+					}
+					
+				});
 				
 				Hotel hotel = hotels.get(i);
 				

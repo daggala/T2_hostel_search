@@ -19,10 +19,10 @@ public class HotelSearch implements QueryDB{
 		
 		DB_DRIVER = "org.sqlite.JDBC";
 //<<<<<<< Updated upstream
-	//	DB_CONNECTION = "jdbc:sqlite:/Users/hrefnaolafsdottir/Skoladot/HI/SoftwareDevelopment/Verkefni/database/HotelData";
+		DB_CONNECTION = "jdbc:sqlite:/Users/hrefnaolafsdottir/Skoladot/HI/SoftwareDevelopment/Verkefni/database/HotelData";
 //=======
 //	DB_CONNECTION = "jdbc:sqlite:/Users/dagny/git/T2_hostel_search/HotelSearch/HotelData";
-		DB_CONNECTION = "jdbc:sqlite:/Users/Eyrun/git/HotelData";
+		//DB_CONNECTION = "jdbc:sqlite:/Users/Eyrun/git/HotelData";
 //>>>>>>> Stashed changes
 		this.selectSQL = "";
 		this.request = request;
