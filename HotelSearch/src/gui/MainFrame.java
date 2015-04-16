@@ -68,8 +68,10 @@ public class MainFrame implements ActionListener {
             {
                 CardLayout cardLayout = (CardLayout) cards.getLayout();
                 cardLayout.first(cards);
+                clearRequest();
             }
         });
+		
 		
 		
 		forwardButton.addActionListener(new ActionListener()
@@ -93,6 +95,11 @@ public class MainFrame implements ActionListener {
 	}
 	
 	
+	
+	public void clearRequest() {
+		hotels = null;
+
+	}
 	
 	public JPanel makeHotelListPanel(final ArrayList<Hotel> hotels, final Request request) {
 		this.hotels = hotels;
@@ -176,6 +183,7 @@ public class MainFrame implements ActionListener {
             {
                 CardLayout cardLayout = (CardLayout) cards.getLayout();
                 cardLayout.first(cards);  
+                clearRequest();
             }
         });
 		
@@ -222,7 +230,7 @@ public class MainFrame implements ActionListener {
 	}
 	
 	/*bætti try og catch */
-	public static Request constructRequest(Facilities fac, StayLength day, double beds, String loc, PriceGroup price) throws InvalidTotalBedsException{
+	public Request constructRequest(Facilities fac, StayLength day, double beds, String loc, PriceGroup price) throws InvalidTotalBedsException{
 		Request req = null;
 		if(beds != 0) {
 			req = new Request(loc, day, beds);
@@ -230,7 +238,10 @@ public class MainFrame implements ActionListener {
 			req.addPriceGroup(price);
 		}
 		else  {
+			hotels = null;
 			throw new InvalidTotalBedsException();
+			
+			
 		}
 		
 		return req;
@@ -257,6 +268,7 @@ public class MainFrame implements ActionListener {
 
 		} catch(IllegalFieldValueException e2){
 			JOptionPane.showMessageDialog(null, "Please enter a valid date");
+			clearRequest();
 		}
 		CheckDate check = new CheckDate(day);
 		if(!check.isValidDate()){
@@ -265,6 +277,7 @@ public class MainFrame implements ActionListener {
 		}
 		if(!check.isValidDuration()){
 			JOptionPane.showMessageDialog(null, "Duration must be shorter than 20 days");
+			clearRequest();
 			day = null;
 		}
 
@@ -275,6 +288,7 @@ public class MainFrame implements ActionListener {
 			e2.printStackTrace();
 			JOptionPane.showMessageDialog(null, "You must select a number of guests");
 			request = null;
+			hotels = null;
 		}		
 		
 		
@@ -287,8 +301,7 @@ public class MainFrame implements ActionListener {
 			
 		} catch (ConnectException e1) {
 			// TODO Auto-generated catch block
-
-			System.out.println("VIRKA EKKI");
+			clearRequest();
 		}
 		
 		
