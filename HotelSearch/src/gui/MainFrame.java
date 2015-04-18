@@ -232,7 +232,7 @@ public class MainFrame implements ActionListener {
 	/*bætti try og catch */
 	public Request constructRequest(Facilities fac, StayLength day, double beds, String loc, PriceGroup price) throws InvalidTotalBedsException{
 		Request req = null;
-		if(beds != 0) {
+		if(beds != 0 ) {
 			req = new Request(loc, day, beds);
 			req.addFacilities(fac);
 			req.addPriceGroup(price);
@@ -240,8 +240,11 @@ public class MainFrame implements ActionListener {
 		else  {
 			hotels = null;
 			throw new InvalidTotalBedsException();
-			
-			
+		}
+		if(loc==null){
+			JOptionPane.showMessageDialog(null, "Please enter a location");
+			hotels=null;
+			req=null;
 		}
 		
 		return req;
